@@ -11,20 +11,20 @@
             @method('PUT')
             @csrf
             <div class="form-group">
-                <label class="required" for="nama">{{ trans('cruds.usaha.fields.nama') }}</label>
-                <input class="form-control {{ $errors->has('nama') ? 'is-invalid' : '' }}" type="text" name="nama" id="nama" value="{{ old('nama', $usaha->nama) }}" required>
-                @if($errors->has('nama'))
-                    <span class="text-danger">{{ $errors->first('nama') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.usaha.fields.nama_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label class="required" for="brand">{{ trans('cruds.usaha.fields.brand') }}</label>
                 <input class="form-control {{ $errors->has('brand') ? 'is-invalid' : '' }}" type="text" name="brand" id="brand" value="{{ old('brand', $usaha->brand) }}" required>
                 @if($errors->has('brand'))
                     <span class="text-danger">{{ $errors->first('brand') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.usaha.fields.brand_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="nama">{{ trans('cruds.usaha.fields.nama') }}</label>
+                <input class="form-control {{ $errors->has('nama') ? 'is-invalid' : '' }}" type="text" name="nama" id="nama" value="{{ old('nama', $usaha->nama) }}" required>
+                @if($errors->has('nama'))
+                    <span class="text-danger">{{ $errors->first('nama') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.usaha.fields.nama_helper') }}</span>
             </div>
             <div class="form-group">
                 <label class="required" for="pengusaha_id">{{ trans('cruds.usaha.fields.pengusaha') }}</label>

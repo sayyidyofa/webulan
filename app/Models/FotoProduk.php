@@ -9,26 +9,6 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use \DateTimeInterface;
 
-/**
- * App\Models\FotoProduk
- *
- * @property int $id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property int $produk_unggulan_id
- * @property-read mixed $foto
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|Media[] $media
- * @property-read int|null $media_count
- * @property-read \App\Models\ProdukUnggulan $produk_unggulan
- * @method static \Illuminate\Database\Eloquent\Builder|FotoProduk newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|FotoProduk newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|FotoProduk query()
- * @method static \Illuminate\Database\Eloquent\Builder|FotoProduk whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|FotoProduk whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|FotoProduk whereProdukUnggulanId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|FotoProduk whereUpdatedAt($value)
- * @mixin \Eloquent
- */
 class FotoProduk extends Model implements HasMedia
 {
     use InteractsWithMedia, HasFactory;

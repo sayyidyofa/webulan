@@ -25,10 +25,10 @@
                                 {{ trans('cruds.usaha.fields.id') }}
                             </th>
                             <th>
-                                {{ trans('cruds.usaha.fields.nama') }}
+                                {{ trans('cruds.usaha.fields.brand') }}
                             </th>
                             <th>
-                                {{ trans('cruds.usaha.fields.brand') }}
+                                {{ trans('cruds.usaha.fields.nama') }}
                             </th>
                             <th>
                                 {{ trans('cruds.usaha.fields.pengusaha') }}
@@ -46,9 +46,6 @@
                                 {{ trans('cruds.usaha.fields.alamat_maps') }}
                             </th>
                             <th>
-                                {{ trans('cruds.usaha.fields.kegiatan') }}
-                            </th>
-                            <th>
                                 &nbsp;
                             </th>
                         </tr>
@@ -63,10 +60,10 @@
                                     {{ $usaha->id ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $usaha->nama ?? '' }}
+                                    {{ $usaha->brand ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $usaha->brand ?? '' }}
+                                    {{ $usaha->nama ?? '' }}
                                 </td>
                                 <td>
                                     {{ $usaha->pengusaha->nama ?? '' }}
@@ -82,9 +79,6 @@
                                 </td>
                                 <td>
                                     {{ $usaha->alamat_maps ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $usaha->kegiatan ?? '' }}
                                 </td>
                                 <td>
                                     @can('usaha_show')
