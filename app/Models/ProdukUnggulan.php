@@ -6,6 +6,29 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use \DateTimeInterface;
 
+/**
+ * App\Models\ProdukUnggulan
+ *
+ * @property int $id
+ * @property string $nama
+ * @property string|null $deskripsi
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $usaha_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\FotoProduk[] $produkUnggulanFotoProduks
+ * @property-read int|null $produk_unggulan_foto_produks_count
+ * @property-read \App\Models\Usaha $usaha
+ * @method static \Illuminate\Database\Eloquent\Builder|ProdukUnggulan newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProdukUnggulan newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProdukUnggulan query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProdukUnggulan whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProdukUnggulan whereDeskripsi($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProdukUnggulan whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProdukUnggulan whereNama($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProdukUnggulan whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProdukUnggulan whereUsahaId($value)
+ * @mixin \Eloquent
+ */
 class ProdukUnggulan extends Model
 {
     use HasFactory;
