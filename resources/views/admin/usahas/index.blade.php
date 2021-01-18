@@ -19,17 +19,17 @@
             <table class=" table table-bordered table-striped table-hover datatable datatable-Usaha">
                 <thead>
                     <tr>
-                        <th width="10">
+<!--                        <th width="10">
 
-                        </th>
+                        </th>-->
                         <th>
                             {{ trans('cruds.usaha.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.usaha.fields.nama') }}
+                            {{ trans('cruds.usaha.fields.brand') }}
                         </th>
                         <th>
-                            {{ trans('cruds.usaha.fields.brand') }}
+                            {{ trans('cruds.usaha.fields.nama') }}
                         </th>
                         <th>
                             {{ trans('cruds.usaha.fields.pengusaha') }}
@@ -47,15 +47,12 @@
                             {{ trans('cruds.usaha.fields.alamat_maps') }}
                         </th>
                         <th>
-                            {{ trans('cruds.usaha.fields.kegiatan') }}
-                        </th>
-                        <th>
                             &nbsp;
                         </th>
                     </tr>
                     <tr>
-                        <td>
-                        </td>
+<!--                        <td>
+                        </td>-->
                         <td>
                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
@@ -86,26 +83,23 @@
                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                        </td>
-                        <td>
                         </td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($usahas as $key => $usaha)
                         <tr data-entry-id="{{ $usaha->id }}">
-                            <td>
+<!--                            <td>
 
-                            </td>
+                            </td>-->
                             <td>
                                 {{ $usaha->id ?? '' }}
                             </td>
                             <td>
-                                {{ $usaha->nama ?? '' }}
+                                {{ $usaha->brand ?? '' }}
                             </td>
                             <td>
-                                {{ $usaha->brand ?? '' }}
+                                {{ $usaha->nama ?? '' }}
                             </td>
                             <td>
                                 {{ $usaha->pengusaha->nama ?? '' }}
@@ -121,9 +115,6 @@
                             </td>
                             <td>
                                 {{ $usaha->alamat_maps ?? '' }}
-                            </td>
-                            <td>
-                                {{ $usaha->kegiatan ?? '' }}
                             </td>
                             <td>
                                 @can('usaha_show')
