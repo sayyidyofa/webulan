@@ -11,7 +11,7 @@
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.usaha.title_singular') }} {{ trans('global.list') }}
+        {{ trans('global.list') }} {{ trans('cruds.usaha.title_singular') }}
     </div>
 
     <div class="card-body">
@@ -19,9 +19,9 @@
             <table class=" table table-bordered table-striped table-hover datatable datatable-Usaha">
                 <thead>
                     <tr>
-<!--                        <th width="10">
+                        <th width="10">
 
-                        </th>-->
+                        </th>
                         <th>
                             {{ trans('cruds.usaha.fields.id') }}
                         </th>
@@ -29,69 +29,25 @@
                             {{ trans('cruds.usaha.fields.brand') }}
                         </th>
                         <th>
-                            {{ trans('cruds.usaha.fields.nama') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.usaha.fields.pengusaha') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.usaha.fields.deskripsi') }}
                         </th>
                         <th>
                             {{ trans('cruds.usaha.fields.kategori') }}
                         </th>
                         <th>
-                            {{ trans('cruds.usaha.fields.kontak') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.usaha.fields.alamat_maps') }}
                         </th>
                         <th>
-                            &nbsp;
+                            {{ trans('global.actions') }}
                         </th>
-                    </tr>
-                    <tr>
-<!--                        <td>
-                        </td>-->
-                        <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                        </td>
-                        <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                        </td>
-                        <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                        </td>
-                        <td>
-                            <select class="search">
-                                <option value>{{ trans('global.all') }}</option>
-                                @foreach($pengusahas as $key => $item)
-                                    <option value="{{ $item->nama }}">{{ $item->nama }}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                        </td>
-                        <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                        </td>
-                        <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                        </td>
-                        <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                        </td>
-                        <td>
-                        </td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($usahas as $key => $usaha)
                         <tr data-entry-id="{{ $usaha->id }}">
-<!--                            <td>
+                            <td>
 
-                            </td>-->
+                            </td>
                             <td>
                                 {{ $usaha->id ?? '' }}
                             </td>
@@ -99,19 +55,10 @@
                                 {{ $usaha->brand ?? '' }}
                             </td>
                             <td>
-                                {{ $usaha->nama ?? '' }}
-                            </td>
-                            <td>
                                 {{ $usaha->pengusaha->nama ?? '' }}
                             </td>
                             <td>
-                                {{ $usaha->deskripsi ?? '' }}
-                            </td>
-                            <td>
                                 {{ $usaha->kategori ?? '' }}
-                            </td>
-                            <td>
-                                {{ $usaha->kontak ?? '' }}
                             </td>
                             <td>
                                 {{ $usaha->alamat_maps ?? '' }}

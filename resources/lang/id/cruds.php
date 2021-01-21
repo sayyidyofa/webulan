@@ -2,8 +2,8 @@
 
 return [
     'userManagement' => [
-        'title'          => 'Manajemen Pengguna',
-        'title_singular' => 'Manajemen Pengguna',
+        'title'          => 'Atur Pengguna',
+        'title_singular' => 'Atur Pengguna',
     ],
     'permission'     => [
         'title'          => 'Izin',
