@@ -19,11 +19,8 @@
             <table class=" table table-bordered table-striped table-hover datatable datatable-Pengusaha">
                 <thead>
                     <tr>
-                        <th width="10">
-
-                        </th>
                         <th>
-                            {{ trans('cruds.pengusaha.fields.id') }}
+                            #
                         </th>
                         <th>
                             {{ trans('cruds.pengusaha.fields.nama') }}
@@ -39,9 +36,6 @@
                 <tbody>
                     @foreach($pengusahas as $key => $pengusaha)
                         <tr data-entry-id="{{ $pengusaha->id }}">
-                            <td>
-
-                            </td>
                             <td>
                                 {{ $pengusaha->id ?? '' }}
                             </td>
@@ -71,9 +65,7 @@
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                     </form>
                                 @endcan
-
                             </td>
-
                         </tr>
                     @endforeach
                 </tbody>
@@ -146,12 +138,6 @@ $('.datatable thead').on('input', '.search', function () {
         .search(value, strict)
         .draw()
   });
-table.on('column-visibility.dt', function(e, settings, column, state) {
-      visibleColumnsIndexes = []
-      table.columns(":visible").every(function(colIdx) {
-          visibleColumnsIndexes.push(colIdx);
-      });
-  })
 })
 
 </script>

@@ -19,11 +19,8 @@
             <table class=" table table-bordered table-striped table-hover datatable datatable-Usaha">
                 <thead>
                     <tr>
-                        <th width="10">
-
-                        </th>
                         <th>
-                            {{ trans('cruds.usaha.fields.id') }}
+                            #
                         </th>
                         <th>
                             {{ trans('cruds.usaha.fields.brand') }}
@@ -45,9 +42,6 @@
                 <tbody>
                     @foreach($usahas as $key => $usaha)
                         <tr data-entry-id="{{ $usaha->id }}">
-                            <td>
-
-                            </td>
                             <td>
                                 {{ $usaha->id ?? '' }}
                             </td>
@@ -158,12 +152,6 @@ $('.datatable thead').on('input', '.search', function () {
         .search(value, strict)
         .draw()
   });
-table.on('column-visibility.dt', function(e, settings, column, state) {
-      visibleColumnsIndexes = []
-      table.columns(":visible").every(function(colIdx) {
-          visibleColumnsIndexes.push(colIdx);
-      });
-  })
 })
 
 </script>

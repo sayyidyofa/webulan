@@ -97,6 +97,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0-rc/dist/js/adminlte.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script>
+        $(() => {
+            // Locale tabel datatable
+            $.extend(true, $.fn.dataTable.defaults, {
+                language: {
+                    url: {
+                        'id': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Indonesian.json',
+                        'en': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json'
+                    }['{{ app()->getLocale() }}']
+                }
+            })
+        });
+    </script>
     @yield('scripts')
 </body>
 
