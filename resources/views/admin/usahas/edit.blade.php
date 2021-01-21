@@ -11,6 +11,13 @@
             @method('PUT')
             @csrf
             <div class="form-group">
+                <label class="required" for="id">NIB</label>
+                <input class="form-control {{ $errors->has('id') ? 'is-invalid' : '' }}" type="text" name="id" id="id" value="{{ old('id', $usaha->id) }}" required>
+                @if($errors->has('id'))
+                    <span class="text-danger">{{ $errors->first('id') }}</span>
+                @endif
+            </div>
+            <div class="form-group">
                 <label class="required" for="nama">{{ trans('cruds.usaha.fields.nama') }}</label>
                 <input class="form-control {{ $errors->has('nama') ? 'is-invalid' : '' }}" type="text" name="nama" id="nama" value="{{ old('nama', $usaha->nama) }}" required>
                 @if($errors->has('nama'))
