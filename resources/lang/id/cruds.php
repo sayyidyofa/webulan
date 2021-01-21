@@ -95,7 +95,7 @@ return [
             'updated_at_helper'  => ' ',
             'deleted_at'         => 'Deleted at',
             'deleted_at_helper'  => ' ',
-            'pengusaha'          => 'Pengusaha',
+            'pengusaha'          => 'Pemilik Usaha',
             'pengusaha_helper'   => ' ',
         ],
     ],
