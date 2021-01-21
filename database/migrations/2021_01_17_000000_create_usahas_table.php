@@ -9,7 +9,7 @@ class CreateUsahasTable extends Migration
     public function up()
     {
         Schema::create('usahas', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->unsignedBigInteger('id')->primary();
             $table->string('nama');
             $table->string('brand');
             $table->string('deskripsi');

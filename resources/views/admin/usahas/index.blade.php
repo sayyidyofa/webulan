@@ -23,6 +23,9 @@
                             #
                         </th>
                         <th>
+                            NIB
+                        </th>
+                        <th>
                             {{ trans('cruds.usaha.fields.brand') }}
                         </th>
                         <th>
@@ -42,6 +45,9 @@
                 <tbody>
                     @foreach($usahas as $key => $usaha)
                         <tr data-entry-id="{{ $usaha->id }}">
+                            <td>
+                                {{ $loop }}
+                            </td>
                             <td>
                                 {{ $usaha->id ?? '' }}
                             </td>

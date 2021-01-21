@@ -54,6 +54,7 @@ class Usaha extends Model
     ];
 
     protected $fillable = [
+        'id',
         'nama',
         'brand',
         'pengusaha_id',

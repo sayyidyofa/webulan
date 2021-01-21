@@ -17,6 +17,13 @@ class StoreUsahaRequest extends FormRequest
     public function rules()
     {
         return [
+            'id'    => [
+                'required',
+                'integer',
+                'min:1',
+                'max:2147483647',
+                'unique:usahas,id',
+            ],
             'nama'         => [
                 'string',
                 'required',
