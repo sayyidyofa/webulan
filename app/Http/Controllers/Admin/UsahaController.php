@@ -83,4 +83,8 @@ class UsahaController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+
+    public function storeComplete(Request $request) {
+        dd($request);
+    }
 }

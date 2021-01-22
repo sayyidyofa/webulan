@@ -7,7 +7,7 @@
     </div>
 
     <div class="card-body">
-        <form method="POST" action="{{ route("admin.usahas.store") }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("admin.usahas.storeComplete") }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label class="required" for="id">NIB</label>
@@ -15,6 +15,7 @@
                 @if($errors->has('id'))
                     <span class="text-danger">{{ $errors->first('id') }}</span>
                 @endif
+                <span class="help-block">Nomor Induk Berusaha</span>
             </div>
             <div class="form-group">
                 <label class="required" for="nama">{{ trans('cruds.usaha.fields.nama') }}</label>
