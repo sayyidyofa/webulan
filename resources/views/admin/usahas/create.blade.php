@@ -85,15 +85,116 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.usaha.fields.kegiatan_helper') }}</span>
             </div>
+            <div class="card">
+                <div class="card-header">
+                    Sosial Media/Website
+                </div>
+                <div class="card-body">
+                    <div class="card">
+                        <div class="card-header">
+                            Akun/Link #1
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="sosmed_acc_1">Link Akun/Nama Akun</label>
+                                <input class="form-control" type="text" name="sosmed_acc[0]" id="sosmed_acc_1">
+                            </div>
+                            <div class="form-group">
+                                @foreach(App\Models\MediaSosial::VENDOR_RADIO as $key => $label)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="vendor_1_{{ $key }}" name="vendor[0]" value="{{ $key }}" required>
+                                        <label class="form-check-label" for="vendor_1_{{ $key }}">{{ $label }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tambahan_sosmed"></div>
+                    <div id="tambahsosmed">
+                        <div class="btn btn-info addsosmed">Tambah Sosmed</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    Produk Unggulan
+                </div>
+                <div class="card-body">
+                    <div class="card">
+                        <div class="card-header">
+                            Produk #1
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="required" for="produk_nama_1">Nama Produk</label>
+                                <input class="form-control" type="text" name="produk_nama[0]" id="produk_nama_1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="produk_deskripsi_1">Deskripsi Produk</label>
+                                <input class="form-control" type="text" name="produk_deskripsi[0]" id="produk_deskripsi_1">
+                                <span class="help-block">Opsional</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tambahan_produk"></div>
+                    <div id="tambahproduk">
+                        <div class="btn btn-info addproduk">Tambah Produk</div>
+                    </div>
+                </div>
+            </div>
             <div class="form-group">
-                <button class="btn btn-danger" type="submit">
+                <button class="btn btn-success" type="submit">
                     {{ trans('global.save') }}
                 </button>
             </div>
         </form>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <script>
+        // Sosmed dynamic input
+        let sosmed_counter = 2;
+        let sosmedVendorTemplate = (id) => `
+        @foreach(App\Models\MediaSosial::VENDOR_RADIO as $key => $label)
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="vendor_${id}_{{ $key }}" name="vendor[${id-1}]" value="{{ $key }}" required>
+            <label class="form-check-label" for="vendor_${id}_{{ $key }}">{{ $label }}</label>
+        </div>
+        @endforeach`;
+        let sosmedTemplate = (id, vendor) => `
+<div class="card">
+    <div class="card-header">
+        Akun/Link #${id}
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+            <label for="sosmed_acc_${id}">Link Akun/Nama Akun</label>
+            <input class="form-control" type="text" name="sosmed_acc[${id-1}]" id="sosmed_acc_${id}">
+        </div>
+        <div class="form-group">
+            ${vendor}
+        </div>
+        <div class="form-group">
+            <div class="btn btn-danger" onclick="$(this).closest('.card').remove()">Cancel</div>
+        </div>
+    </div>
+</div>`;
+        $('.addsosmed').on('click', (e) => {
+            $('#tambahan_sosmed').append(
+                sosmedTemplate(sosmed_counter, sosmedVendorTemplate(sosmed_counter))
+            );
+            sosmed_counter = sosmed_counter + 1;
+        });
 
 
+        // Produk dynamic input
+        let produk_counter = 2;
 
+        $('.addproduk').on('click', (e) => {
+            $('#tambahan_produk').append();
+            produk_counter = produk_counter + 1;
+        });
+    </script>
 @endsection
