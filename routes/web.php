@@ -47,6 +47,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('foto-produks/media', 'FotoProdukController@storeMedia')->name('foto-produks.storeMedia');
     Route::post('foto-produks/ckmedia', 'FotoProdukController@storeCKEditorImages')->name('foto-produks.storeCKEditorImages');
     Route::resource('foto-produks', 'FotoProdukController');
+    Route::post('foto-produks/quick-delete', 'FotoProdukController@quickDelete')->name('foto-produks.quickDelete');
+
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
 // Change password

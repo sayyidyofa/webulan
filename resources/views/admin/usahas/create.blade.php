@@ -134,6 +134,10 @@
                                 <input class="form-control" type="text" name="produk_deskripsi[0]" id="produk_deskripsi_1">
                                 <span class="help-block">Opsional</span>
                             </div>
+                            <div class="form-group">
+                                <label for="foto_dropzone_1" class="required">Upload Foto</label>
+                                <div class="needsclick dropzone" id="foto_dropzone_1"></div>
+                            </div>
                         </div>
                     </div>
                     <div id="tambahan_produk"></div>
@@ -191,10 +195,145 @@
 
         // Produk dynamic input
         let produk_counter = 2;
+        let removeCalonProductFotos = (id) => {
+            let deletedInputs = $('form').find(`input[name='foto_${id-1}[]']`);
+            [... new Set(deletedInputs.map((_, {value}) => value).toArray())].forEach((filename) => {
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('admin.foto-produks.quickDelete') }}',
+                    data: `_token={{ csrf_token() }}&filename=${filename}`,
+                    success: (jqObj) => {console.dir([`deleted ${filename}`, jqObj])},
+                    error: console.dir
+                });
+            });
+            deletedInputs.remove();
+        }
+        let produkTemplate = (id) => {
+            return `
+        <div class="card">
+            <div class="card-header">
+                Produk #${id}
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label class="required" for="produk_nama_${id}">Nama Produk</label>
+                    <input class="form-control" type="text" name="produk_nama[${id - 1}]" id="produk_nama_${id}" required>
+                </div>
+                <div class="form-group">
+                    <label for="produk_deskripsi_${id}">Deskripsi Produk</label>
+                    <input class="form-control" type="text" name="produk_deskripsi[${id - 1}]" id="produk_deskripsi_${id}">
+                    <span class="help-block">Opsional</span>
+                </div>
+                <div class="form-group">
+                    <label for="foto_dropzone_${id}" class="required">Upload Foto</label>
+                    <div class="needsclick dropzone" id="foto_dropzone_${id}"></div>
+                </div>
+                <div class="form-group">
+                    <div class="btn btn-danger" onclick="
+                    removeCalonProductFotos(${id});
+                    dropzones = dropzones.filter((_, index) => index !== ${id});
+                    $(this).closest('.card').remove()
+                    ">Cancel</div>
+                </div>
+            </div>
+        </div>
+        `};
 
+        let dropzones = [];
+        let uploadedFotoArray = [];
         $('.addproduk').on('click', (e) => {
-            $('#tambahan_produk').append();
+            $('#tambahan_produk').append(produkTemplate(produk_counter));
+            dropzones[produk_counter] = new Dropzone(`#foto_dropzone_${produk_counter}`, {
+                url: '{{ route('admin.foto-produks.storeMedia') }}',
+                maxFilesize: 2, // MB
+                acceptedFiles: '.jpeg,.jpg,.png,.gif',
+                addRemoveLinks: true,
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                params: {
+                    size: 2,
+                    width: 4096,
+                    height: 4096
+                },
+                success: function (file, response) {
+                    $('form').append(`<input type="hidden" name="foto_${produk_counter-2}[]" value="${response.name}">`);
+                    let tempObj = {};
+                    tempObj[file.name] = response.name;
+                    uploadedFotoArray[produk_counter] = tempObj;
+                },
+                removedfile: function (file) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route('admin.foto-produks.quickDelete') }}',
+                        data: `_token={{ csrf_token() }}&filename=${uploadedFotoArray[produk_counter][file.name]}`
+                        //success: () => {console.log(`deleted one of foto calon produk #${produk_counter}`)}
+                    });
+                    file.previewElement.remove()
+                    let name;
+                    if (typeof file.file_name !== 'undefined') {
+                        name = file.file_name
+                    } else {
+                        name = uploadedFotoArray[produk_counter][file.name];
+                    }
+                    $('form').find(`input[name="foto_${produk_counter-1}[]"][value="${name}"]`).remove()
+                    uploadedFotoArray = uploadedFotoArray.filter((_, index) => index !== produk_counter);
+                },
+                error: console.dir
+            });
+            // Dropzone.options[dropzones[produk_counter]] = fotoDropzoneOption(produk_counter);
             produk_counter = produk_counter + 1;
         });
+
+        let uploadedFotoMap = {};
+        Dropzone.options[`fotoDropzone${1}`] = {
+            url: '{{ route('admin.foto-produks.storeMedia') }}',
+            maxFilesize: 2, // MB
+            acceptedFiles: '.jpeg,.jpg,.png,.gif',
+            addRemoveLinks: true,
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            params: {
+                size: 2,
+                width: 4096,
+                height: 4096
+            },
+            success: function (file, response) {
+                $('form').append('<input type="hidden" name="foto_0[]" value="' + response.name + '">')
+                uploadedFotoMap[file.name] = response.name
+            },
+            removedfile: function (file) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('admin.foto-produks.quickDelete') }}',
+                    data: `_token={{ csrf_token() }}&filename=${uploadedFotoMap[file.name]}`
+                    //success: console.dir
+                });
+                file.previewElement.remove()
+                let name;
+                if (typeof file.file_name !== 'undefined') {
+                    name = file.file_name
+                } else {
+                    name = uploadedFotoMap[file.name];
+                }
+                $('form').find('input[name="foto_0[]"][value="' + name + '"]').remove()
+                delete uploadedFotoMap[file.name]
+            },
+            error: function (file, response) {
+                let message = $.type(response) === 'string'
+                    ? response
+                    : response.errors.file;
+                file.previewElement.classList.add('dz-error')
+                let _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
+                let _results = []
+                for (let _i = 0, _len = _ref.length; _i < _len; _i++) {
+                    let node = _ref[_i]
+                    _results.push(node.textContent = message)
+                }
+
+                return _results
+            }
+        }
     </script>
 @endsection

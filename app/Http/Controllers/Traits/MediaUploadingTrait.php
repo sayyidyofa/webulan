@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Traits;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 trait MediaUploadingTrait
 {
@@ -45,5 +46,25 @@ trait MediaUploadingTrait
             'name'          => $name,
             'original_name' => $file->getClientOriginalName(),
         ]);
+    }
+
+    public function quickDelete(Request $request)
+    {
+        $filename = $request->get('filename');
+
+        if (!is_null($filename)) {
+            return Storage::disk('temporary')->delete($filename)
+                ? response()->json([
+                    'msg' => 'success'
+                ])
+                : response()->json([
+                    'msg' => 'File with the name specified not found',
+                    'filename' => $filename
+                ]);
+        } else {
+            return response()->json([
+                'msg' => 'Filename is null, please specify'
+            ]);
+        }
     }
 }
