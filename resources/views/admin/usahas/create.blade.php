@@ -292,6 +292,7 @@
                     }
 
                     return _results
+                }
             });
             // Dropzone.options[dropzones[produk_counter]] = fotoDropzoneOption(produk_counter);
             produk_counter = produk_counter + 1;

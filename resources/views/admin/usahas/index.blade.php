@@ -46,7 +46,7 @@
                     @foreach($usahas as $key => $usaha)
                         <tr data-entry-id="{{ $usaha->id }}">
                             <td>
-                                {{ $loop }}
+                                {{ $loop->iteration }}
                             </td>
                             <td>
                                 {{ $usaha->id ?? '' }}
