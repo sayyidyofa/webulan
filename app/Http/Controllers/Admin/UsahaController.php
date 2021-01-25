@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyUsahaRequest;
 use App\Http\Requests\StoreUsahaRequest;
 use App\Http\Requests\UpdateUsahaRequest;
+use App\Models\FotoProduk;
+use App\Models\MediaSosial;
 use App\Models\Pengusaha;
+use App\Models\ProdukUnggulan;
 use App\Models\Usaha;
 use Gate;
 use Illuminate\Http\Request;
@@ -85,6 +88,53 @@ class UsahaController extends Controller
     }
 
     public function storeComplete(Request $request) {
-        dd($request);
+        $usaha = new Usaha([
+            'id' => $request->get('id'),
+            'nama' => $request->get('nama'),
+            'brand' => $request->get('brand'),
+            'pengusaha_id' => $request->get('pengusaha_id'),
+            'deskripsi' => $request->get('deskripsi'),
+            'kategori' => $request->get('kategori'),
+            'kontak' => $request->get('kontak'),
+            'alamat_maps' => $request->get('alamat_maps'),
+            'kegiatan' => $request->get('kegiatan') ?? null
+        ]);
+        $usaha->save();
+
+        if (
+            $request->has('sosmed_acc') &&
+            $request->has('vendor') &&
+            count($request->get('sosmed_acc')) > 0 &&
+            count($request->get('vendor')) > 0 &&
+            count($request->get('sosmed_acc')) === count($request->get('vendor'))
+        ) {
+            foreach ($request->get('sosmed_acc') as $index => $link_akun) {
+                (new MediaSosial([
+                    'link_accname' => $link_akun,
+                    'vendor' => $request->get('vendor')[$index]
+                ]))->usaha()->associate($usaha)->save();
+            }
+        }
+
+        if ($request->has('produk_nama') && count($request->get('produk_nama')) > 0 ) {
+            foreach ($request->get('produk_nama') as $index => $nama_produk) {
+                $produk = new ProdukUnggulan([
+                    'nama' => $nama_produk,
+                    'deskripsi' => $request->has('produk_deskripsi')
+                        ? array_key_exists($index, $request->get('produk_deskripsi'))
+                            ? $request->get('produk_deskripsi')[$index]
+                            : null
+                        : null
+                ]);
+                $produk->save();
+                if ($request->has('foto_'.$index) && count($request->get('foto_'.$index)) > 0) {
+                    foreach ($request->get('foto_'.$index) as $fotoFilename) {
+                        $fotoProduk = new FotoProduk;
+                        $fotoProduk->produk_unggulan()->associate($produk)->save();
+                        $fotoProduk->addMedia(storage_path('tmp/uploads'.$fotoFilename))->toMediaCollection('foto');
+                    }
+                }
+            }
+        }
     }
 }
