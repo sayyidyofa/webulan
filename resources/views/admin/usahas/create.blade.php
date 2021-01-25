@@ -135,7 +135,7 @@
                                 <span class="help-block">Opsional</span>
                             </div>
                             <div class="form-group">
-                                <label for="foto_dropzone_1" class="required">Upload Foto</label>
+                                <label for="foto_dropzone_1" class="required">Upload Foto (Maksimal 2MB/foto)</label>
                                 <div class="needsclick dropzone" id="foto_dropzone_1"></div>
                             </div>
                         </div>
@@ -225,7 +225,7 @@
                     <span class="help-block">Opsional</span>
                 </div>
                 <div class="form-group">
-                    <label for="foto_dropzone_${id}" class="required">Upload Foto</label>
+                    <label for="foto_dropzone_${id}" class="required">Upload Foto (Maksimal 2MB/foto)</label>
                     <div class="needsclick dropzone" id="foto_dropzone_${id}"></div>
                 </div>
                 <div class="form-group">
