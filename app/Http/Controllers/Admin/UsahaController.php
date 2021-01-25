@@ -136,5 +136,7 @@ class UsahaController extends Controller
                 }
             }
         }
+
+        return redirect()->route('admin.usahas.index');
     }
 }
