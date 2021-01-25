@@ -279,7 +279,19 @@
                     $('form').find(`input[name="foto_${produk_counter-1}[]"][value="${name}"]`).remove()
                     uploadedFotoArray = uploadedFotoArray.filter((_, index) => index !== produk_counter);
                 },
-                error: console.dir
+                error: function (file, response) {
+                    let message = $.type(response) === 'string'
+                        ? response
+                        : response.errors.file;
+                    file.previewElement.classList.add('dz-error')
+                    let _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
+                    let _results = []
+                    for (let _i = 0, _len = _ref.length; _i < _len; _i++) {
+                        let node = _ref[_i]
+                        _results.push(node.textContent = message)
+                    }
+
+                    return _results
             });
             // Dropzone.options[dropzones[produk_counter]] = fotoDropzoneOption(produk_counter);
             produk_counter = produk_counter + 1;
