@@ -130,9 +130,9 @@ class UsahaController extends Controller
                 ]);
                 $produk->save();
                 if ($request->has('foto_'.$index) && count($request->get('foto_'.$index)) > 0) {
+                    $fotoProduk = new FotoProduk;
+                    $fotoProduk->produk_unggulan()->associate($produk)->save();
                     foreach ($request->get('foto_'.$index) as $fotoFilename) {
-                        $fotoProduk = new FotoProduk;
-                        $fotoProduk->produk_unggulan()->associate($produk)->save();
                         $fotoProduk->addMedia(storage_path('tmp/uploads/'.$fotoFilename))->toMediaCollection('foto');
                     }
                 }
