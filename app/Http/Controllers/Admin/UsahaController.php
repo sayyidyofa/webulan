@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyUsahaRequest;
+use App\Http\Requests\StoreUsahaCompleteRequest;
 use App\Http\Requests\StoreUsahaRequest;
 use App\Http\Requests\UpdateUsahaRequest;
 use App\Models\FotoProduk;
@@ -87,7 +88,7 @@ class UsahaController extends Controller
         return response(null, Response::HTTP_NO_CONTENT);
     }
 
-    public function storeComplete(Request $request) {
+    public function storeComplete(StoreUsahaCompleteRequest $request) {
         $usaha = new Usaha([
             'id' => $request->get('id'),
             'nama' => $request->get('nama'),
