@@ -102,7 +102,7 @@
                             <div class="form-group">
                                 @foreach(App\Models\MediaSosial::VENDOR_RADIO as $key => $label)
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" id="vendor_1_{{ $key }}" name="vendor[0]" value="{{ $key }}" required>
+                                        <input class="form-check-input" type="radio" id="vendor_1_{{ $key }}" name="vendor[0]" value="{{ $key }}">
                                         <label class="form-check-label" for="vendor_1_{{ $key }}">{{ $label }}</label>
                                     </div>
                                 @endforeach
@@ -163,7 +163,7 @@
         let sosmedVendorTemplate = (id) => `
         @foreach(App\Models\MediaSosial::VENDOR_RADIO as $key => $label)
         <div class="form-check">
-            <input class="form-check-input" type="radio" id="vendor_${id}_{{ $key }}" name="vendor[${id-1}]" value="{{ $key }}" required>
+            <input class="form-check-input" type="radio" id="vendor_${id}_{{ $key }}" name="vendor[${id-1}]" value="{{ $key }}">
             <label class="form-check-label" for="vendor_${id}_{{ $key }}">{{ $label }}</label>
         </div>
         @endforeach`;
