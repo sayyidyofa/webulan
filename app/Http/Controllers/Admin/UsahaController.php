@@ -111,14 +111,16 @@ class UsahaController extends Controller
             foreach ($request->get('sosmed_acc') as $index => $link_akun) {
                 (new MediaSosial([
                     'link_accname' => $link_akun,
-                    'vendor' => $request->get('vendor')[$index]
-                ]))->usaha()->associate($usaha)->save();
+                    'vendor' => $request->get('vendor')[$index],
+                    'usaha_id' => $request->get('id')
+                ]))->save();
             }
         }
 
         if ($request->has('produk_nama') && count($request->get('produk_nama')) > 0 ) {
             foreach ($request->get('produk_nama') as $index => $nama_produk) {
                 $produk = new ProdukUnggulan([
+                    'usaha_id' => $request->get('id'),
                     'nama' => $nama_produk,
                     'deskripsi' => $request->has('produk_deskripsi')
                         ? array_key_exists($index, $request->get('produk_deskripsi'))
@@ -131,7 +133,7 @@ class UsahaController extends Controller
                     foreach ($request->get('foto_'.$index) as $fotoFilename) {
                         $fotoProduk = new FotoProduk;
                         $fotoProduk->produk_unggulan()->associate($produk)->save();
-                        $fotoProduk->addMedia(storage_path('tmp/uploads'.$fotoFilename))->toMediaCollection('foto');
+                        $fotoProduk->addMedia(storage_path('tmp/uploads/'.$fotoFilename))->toMediaCollection('foto');
                     }
                 }
             }
