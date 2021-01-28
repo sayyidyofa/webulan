@@ -10,7 +10,7 @@ class AddRelationshipFieldsToMediaSosialsTable extends Migration
     {
         Schema::table('media_sosials', function (Blueprint $table) {
             $table->unsignedBigInteger('usaha_id');
-            $table->foreign('usaha_id', 'usaha_fk_2999166')->references('id')->on('usahas');
+            $table->foreign('usaha_id', 'usaha_fk_2999166')->references('id')->on('usahas')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 }
