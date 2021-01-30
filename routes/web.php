@@ -1,7 +1,8 @@
 <?php
 
 // Front
-Route::get('/');
+Route::get('/', 'FrontController@usahaList')->name('front.usahaList');
+Route::get('/{usaha}/detail', 'FrontController@usahaShow')->name('front.usahaShow');
 
 // Admin
 Route::get('/home', function () {
