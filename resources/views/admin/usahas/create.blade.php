@@ -78,7 +78,7 @@
                 <span class="help-block">{{ trans('cruds.usaha.fields.alamat_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="maps">{{ trans('cruds.usaha.fields.maps') }}</label>
+                <label for="maps">{{ trans('cruds.usaha.fields.maps') }}</label>
                 <input class="form-control {{ $errors->has('maps') ? 'is-invalid' : '' }}" type="text" name="maps" id="maps" value="{{ old('maps', '') }}">
                 @if($errors->has('maps'))
                     <span class="text-danger">{{ $errors->first('maps') }}</span>
