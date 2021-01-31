@@ -76,10 +76,18 @@
                         </tr>
                         <tr>
                             <th>
-                                {{ trans('cruds.usaha.fields.alamat_maps') }}
+                                {{ trans('cruds.usaha.fields.alamat') }}
                             </th>
                             <td>
-                                {{ $usaha->alamat_maps }}
+                                {{ $usaha->alamat }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                {{ trans('cruds.usaha.fields.maps') }}
+                            </th>
+                            <td>
+                                {{ $usaha->maps }}
                             </td>
                         </tr>
                         <tr>

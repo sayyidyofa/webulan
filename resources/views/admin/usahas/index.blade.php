@@ -35,7 +35,7 @@
                             {{ trans('cruds.usaha.fields.kategori') }}
                         </th>
                         <th>
-                            {{ trans('cruds.usaha.fields.alamat_maps') }}
+                            {{ trans('cruds.usaha.fields.alamat') }}
                         </th>
                         <th>
                             {{ trans('global.actions') }}
@@ -61,7 +61,7 @@
                                 {{ $usaha->kategori ?? '' }}
                             </td>
                             <td>
-                                {{ $usaha->alamat_maps ?? '' }}
+                                {{ $usaha->alamat ?? '' }}
                             </td>
                             <td>
                                 @can('usaha_show')

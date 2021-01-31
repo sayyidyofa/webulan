@@ -47,9 +47,13 @@ class StoreUsahaCompleteRequest extends FormRequest
                 'string',
                 'required',
             ],
-            'alamat_maps'  => [
+            'alamat'  => [
                 'string',
                 'required',
+            ],
+            'maps'  => [
+                'string',
+                'nullable',
             ],
             'kegiatan'     => [
                 'string',

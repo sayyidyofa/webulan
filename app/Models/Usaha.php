@@ -16,7 +16,8 @@ use \DateTimeInterface;
  * @property string $deskripsi
  * @property string $kategori
  * @property string $kontak
- * @property string $alamat_maps
+ * @property string $alamat
+ * @property string $maps
  * @property string|null $kegiatan
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -29,7 +30,7 @@ use \DateTimeInterface;
  * @method static \Illuminate\Database\Eloquent\Builder|Usaha newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Usaha newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Usaha query()
- * @method static \Illuminate\Database\Eloquent\Builder|Usaha whereAlamatMaps($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Usaha whereAlamat($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Usaha whereBrand($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Usaha whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Usaha whereDeskripsi($value)
@@ -63,7 +64,8 @@ class Usaha extends Model
         'deskripsi',
         'kategori',
         'kontak',
-        'alamat_maps',
+        'alamat',
+        'maps',
         'kegiatan',
         'created_at',
         'updated_at',

@@ -97,7 +97,8 @@ class UsahaController extends Controller
             'deskripsi' => $request->get('deskripsi'),
             'kategori' => $request->get('kategori'),
             'kontak' => $request->get('kontak'),
-            'alamat_maps' => $request->get('alamat_maps'),
+            'alamat' => $request->get('alamat'),
+            'maps' => $request->get('maps') ?? null,
             'kegiatan' => $request->get('kegiatan') ?? null
         ]);
         $usaha->save();

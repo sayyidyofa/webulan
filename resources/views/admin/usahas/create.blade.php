@@ -70,12 +70,20 @@
                 <span class="help-block">{{ trans('cruds.usaha.fields.kontak_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="alamat_maps">{{ trans('cruds.usaha.fields.alamat_maps') }}</label>
-                <input class="form-control {{ $errors->has('alamat_maps') ? 'is-invalid' : '' }}" type="text" name="alamat_maps" id="alamat_maps" value="{{ old('alamat_maps', '') }}" required>
-                @if($errors->has('alamat_maps'))
-                    <span class="text-danger">{{ $errors->first('alamat_maps') }}</span>
+                <label class="required" for="alamat">{{ trans('cruds.usaha.fields.alamat') }}</label>
+                <input class="form-control {{ $errors->has('alamat') ? 'is-invalid' : '' }}" type="text" name="alamat" id="alamat" value="{{ old('alamat', '') }}" required>
+                @if($errors->has('alamat'))
+                    <span class="text-danger">{{ $errors->first('alamat') }}</span>
                 @endif
-                <span class="help-block">{{ trans('cruds.usaha.fields.alamat_maps_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.usaha.fields.alamat_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="maps">{{ trans('cruds.usaha.fields.maps') }}</label>
+                <input class="form-control {{ $errors->has('maps') ? 'is-invalid' : '' }}" type="text" name="maps" id="maps" value="{{ old('maps', '') }}">
+                @if($errors->has('maps'))
+                    <span class="text-danger">{{ $errors->first('maps') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.usaha.fields.maps_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="kegiatan">{{ trans('cruds.usaha.fields.kegiatan') }}</label>

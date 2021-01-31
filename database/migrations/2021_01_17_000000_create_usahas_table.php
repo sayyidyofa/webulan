@@ -16,7 +16,8 @@ class CreateUsahasTable extends Migration
             $table->string('deskripsi');
             $table->string('kategori');
             $table->string('kontak');
-            $table->string('alamat_maps');
+            $table->string('alamat');
+            $table->string('maps', 8192)->nullable(); // https://www.google.com/search?q=google+maps+url+length
             $table->string('kegiatan')->nullable();
             $table->timestamps();
         });
