@@ -70,14 +70,14 @@
                     <div class="row">
                         <p>Media Sosial : <br>
                             @foreach($usaha->usahaMediaSosials as $mediaSosial)
-                            @if ($mediaSosial->vendor == 'website sendiri')
-                            <i class="fa fa-link" aria-hidden="true"></i><a href="{{$mediaSosial->link_accname}}" target="_blank"> {{$mediaSosial->link_accname}}</a><br>
+                            @if ($mediaSosial->vendor == "website sendiri")
+                            <i class="fa fa-link" aria-hidden="true"></i><a href="{{$mediaSosial->link_accname}}" target="_blank" title="Website"> {{$mediaSosial->link_accname}}</a><br>
                             @elseif ($mediaSosial->vendor == "instagram")
-                            <i class="fa fa-instagram" aria-hidden="true"></i><a href="https://www.instagram.com/{{$mediaSosial->link_accname}}" target="_blank"> {{$mediaSosial->link_accname}}</a><br>
+                            <i class="fa fa-instagram" aria-hidden="true"></i><a href="https://www.instagram.com/{{$mediaSosial->link_accname}}" target="_blank" title="Instagram"> {{$mediaSosial->link_accname}}</a><br>
                             @elseif ($mediaSosial->vendor == "facebook")
-                            <i class="fa fa-facebook-official" aria-hidden="true"></i><a href="https://www.facebook.com/{{$mediaSosial->link_accname}}" target="_blank"> {{$mediaSosial->link_accname}}</a><br>
+                            <i class="fa fa-facebook-official" aria-hidden="true"></i><a href="https://www.facebook.com/{{$mediaSosial->link_accname}}" target="_blank" title="Facebook"> {{$mediaSosial->link_accname}}</a><br>
                             @elseif ($mediaSosial->vendor == "tiktok")
-                            <i class="fab fa-tiktok" aria-hidden="true"></i><a href="https://www.tiktok.com/{{$mediaSosial->link_accname}}" target="_blank"> {{$mediaSosial->link_accname}}</a><br>
+                            <i class="fa fa-music" aria-hidden="true"></i><a href="https://www.tiktok.com/{{$mediaSosial->link_accname}}" target="_blank" title="TikTok"> {{$mediaSosial->link_accname}}</a><br>
                             @endif
                             @endforeach
                         </p>
@@ -85,12 +85,14 @@
                 </div>
 
                 <!-- Maps -->
+                @if($usaha->maps)
                 <div class="col-lg-6">
                     <div class="map mb-4 mb-lg-0">
                         <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 312px;" allowfullscreen></iframe> -->
                         <iframe src="{{$usaha->maps}}" frameborder="0" style="border:0; width: 100%; height: 312px;" allowfullscreen></iframe>
                     </div>
                 </div>
+                @endif
             </div>
 
         </div>
