@@ -28,24 +28,14 @@
 
                 <div class="row counters">
 
-                    <div class="col-lg-3 col-6 text-center">
-                        <span data-toggle="counter-up">274</span>
-                        <p>Clients</p>
+                    <div class="col-lg-6 col-6 text-center">
+                        <span data-toggle="counter-up">{{count($pengusaha)}}</span>
+                        <p>Pemilik UMKM</p>
                     </div>
 
-                    <div class="col-lg-3 col-6 text-center">
-                        <span data-toggle="counter-up">421</span>
-                        <p>Projects</p>
-                    </div>
-
-                    <div class="col-lg-3 col-6 text-center">
-                        <span data-toggle="counter-up">1,364</span>
-                        <p>Hours Of Support</p>
-                    </div>
-
-                    <div class="col-lg-3 col-6 text-center">
-                        <span data-toggle="counter-up">18</span>
-                        <p>Hard Workers</p>
+                    <div class="col-lg-6 col-6 text-center">
+                        <span data-toggle="counter-up">{{count($usahas)}}</span>
+                        <p>UMKM</p>
                     </div>
 
                 </div>
@@ -66,17 +56,17 @@
                 <div class="row about-container">
 
                     <div class="col-lg-12 content">
-                        <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                        <table id="example" class="table table-striped table-bordered dt-responsive nowrap text-center" style="width:100%">
                             <thead>
                             <tr>
-                                <th style="width: 15%">No</th>
+                                <!-- <th style="width: 15%">No</th> -->
                                 <th>UMKM</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($usahas as $usaha)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <!-- <td>{{ $loop->iteration }}</td> -->
                                     <td><a href="{{ route('front.usahaShow', ['usaha' => $usaha->id]) }}">{{ $usaha->brand }}</a></td>
                                 </tr>
                             @endforeach

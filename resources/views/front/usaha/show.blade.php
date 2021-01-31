@@ -9,9 +9,9 @@
         <section id="why-us" class="wow fadeIn">
             <div class="container" style="padding-top: 50px;">
                 <header class="section-header">
-                    <h3>UMKM</h3>
-                    <p>Nomor Induk Berusaha : <br><br>
-                        UMKM ... adalah UMKM milik [pemilik] yang bergerak di bidang [kategori]. UMKM ... [deskripsi].</p>
+                    <h3>{{$usaha->brand}}</h3>
+                    <p>Nomor Induk Berusaha : {{$usaha->id}}<br><br>
+                        UMKM {{$usaha->brand}} adalah UMKM milik {{$usaha->pengusaha->nama}} yang bergerak di bidang {{$usaha->kategori}}. UMKM {{$usaha->brand}} adalah {{$usaha->deskripsi}}.</p>
                 </header>
             </div>
         </section>
@@ -24,11 +24,11 @@
 
                 <header class="section-header">
                     <h3 class="section-title">Produk Unggulan</h3>
-                    <p>Daftar produk unggulan dari UMKM ..... adalah </p>
+                    <p>Daftar produk unggulan dari UMKM {{$usaha->brand}} adalah </p>
                 </header>
 
                 <div class="row portfolio-container">
-
+                    @foreach($usaha->usahaProdukUnggulans as $foto)
                     <div class="col-lg-4 col-md-6 portfolio-item">
                         <div class="portfolio-wrap">
                             <img src="img/portfolio/app1.jpg" class="img-fluid" alt=""> <!-- Foto Produk -->
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                     </div>
-
+@endforeach
                     <div class="col-lg-4 col-md-6 portfolio-item">
                         <div class="portfolio-wrap">
                             <img src="img/portfolio/app1.jpg" class="img-fluid" alt=""> <!-- Foto Produk -->
@@ -92,16 +92,21 @@
                     <div class="col-lg-6" style="padding-left: 50px;">
                         <!-- Alamat dan Kontak -->
                         <div class="row">
-                            <p>Alamat Lengkap : <br>
-                                Kontak :
+                            <p>Alamat Lengkap : {{$usaha->alamat_maps}}<br>
+                                Kontak : {{$usaha->kontak}}
                             </p>
                         </div>
                         <!-- Media Sosial -->
                         <div class="row">
                             <p>Media Sosial : <br>
-                                <i class="fa fa-link" aria-hidden="true"></i><a href="#"> Link webpage</a><br>
-                                <i class="fa fa-instagram" aria-hidden="true"></i><a href="#"> Instagram</a><br>
-                                <i class="fa fa-facebook-official" aria-hidden="true"></i><a href="#"> Facebook</a><br>
+                            @if ($usaha->usahaMediaSosials[0]->vendor == 'website sendiri')
+                                <i class="fa fa-link" aria-hidden="true"></i><a href="https://instagram.com/{{$usaha->usahaMediaSosials[0]->link_accname}}" target="_blank"> {{$usaha->usahaMediaSosials[0]->link_accname}}</a><br>
+                            @elseif ($usaha->usahaMediaSosials[0]->vendor == "instagram")    
+                                <i class="fa fa-instagram" aria-hidden="true"></i><a href="#"> {{$usaha->usahaMediaSosials[0]->link_accname}}</a><br>
+                            @elseif ($usaha->usahaMediaSosials[0]->vendor == "facebook")
+                                <i class="fa fa-facebook-official" aria-hidden="true"></i><a href="#"> {{$usaha->usahaMediaSosials[0]->link_accname}}</a><br>
+                            
+                            @endif
                             </p>
                         </div>
                     </div>
@@ -109,7 +114,8 @@
                     <!-- Maps -->
                     <div class="col-lg-6">
                         <div class="map mb-4 mb-lg-0">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 312px;" allowfullscreen></iframe>
+                            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 312px;" allowfullscreen></iframe> -->
+                                <iframe src="{{$usaha->alamat_maps}}" frameborder="0" style="border:0; width: 100%; height: 312px;" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>

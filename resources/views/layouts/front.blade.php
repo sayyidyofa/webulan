@@ -9,8 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicons -->
-    <link href="{{ asset('front/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('front/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('front/img/logo-pemkot.png') }}" rel="icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700"
