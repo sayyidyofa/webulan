@@ -163,7 +163,7 @@
         let sosmedVendorTemplate = (id) => `
         @foreach(App\Models\MediaSosial::VENDOR_RADIO as $key => $label)
         <div class="form-check">
-            <input class="form-check-input" type="radio" id="vendor_${id}_{{ $key }}" name="vendor[${id-1}]" value="{{ $key }}">
+            <input class="form-check-input" type="radio" id="vendor_${id}_{{ $key }}" name="vendor[${id-1}]" value="{{ $key }}" {{ $loop->iteration === 1 ? 'required' : '' }}>
             <label class="form-check-label" for="vendor_${id}_{{ $key }}">{{ $label }}</label>
         </div>
         @endforeach`;
@@ -175,7 +175,7 @@
     <div class="card-body">
         <div class="form-group">
             <label for="sosmed_acc_${id}">Link Akun/Nama Akun</label>
-            <input class="form-control" type="text" name="sosmed_acc[${id-1}]" id="sosmed_acc_${id}">
+            <input class="form-control" type="text" name="sosmed_acc[${id-1}]" id="sosmed_acc_${id}" required>
         </div>
         <div class="form-group">
             ${vendor}
@@ -348,5 +348,11 @@
                 return _results
             }
         }
+
+        // Apakah sosmed pertama diisi namanya? Jika iya, radio required
+        let firstSosmedRadioElement = document.getElementById('vendor_1_{{ array_keys(App\Models\MediaSosial::VENDOR_RADIO)[0] }}');
+        document.getElementById('sosmed_acc_1').addEventListener('change', (e) => {
+            firstSosmedRadioElement.required = e.target.value.length > 0
+        });
     </script>
 @endsection
