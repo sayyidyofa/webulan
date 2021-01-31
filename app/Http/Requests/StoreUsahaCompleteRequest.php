@@ -6,6 +6,8 @@ namespace App\Http\Requests;
 
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Validator;
 
 class StoreUsahaCompleteRequest extends FormRequest
 {
@@ -58,9 +60,19 @@ class StoreUsahaCompleteRequest extends FormRequest
             ],
             'sosmed_acc' => 'sometimes|array',
             'vendor' => 'required_with:sosmed_acc|array',
-            'produk_nama' => 'sometimes|string',
-            'produk_deskripsi' => 'nullable|string',
+            'produk_nama' => 'sometimes|array',
+            'produk_deskripsi' => 'nullable|array',
             'foto_.*' => 'sometimes|array'
         ];
+    }
+
+    public function withValidator(Validator $validator) {
+        if ($validator->fails()) {
+            collect($this->all())->filter(fn ($v, $k) => strpos($k, 'foto_') !== false)->each(function (array $item) {
+                foreach ($item as $filename) {
+                    Storage::disk('temporary')->delete($filename);
+                }
+            });
+        }
     }
 }
