@@ -9,7 +9,7 @@ class CreateUsahasTable extends Migration
     public function up()
     {
         Schema::create('usahas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nib');
             $table->string('nama');
             $table->string('brand');

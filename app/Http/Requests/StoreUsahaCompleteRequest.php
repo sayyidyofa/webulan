@@ -20,7 +20,7 @@ class StoreUsahaCompleteRequest extends FormRequest
     {
         return [
             'nib'    => [
-                'regex:/^[0-9]+$/g',
+                'regex:/^[0-9]+$/',
                 'required',
             ],
             'nama'         => [

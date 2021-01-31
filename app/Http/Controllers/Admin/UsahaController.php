@@ -113,7 +113,7 @@ class UsahaController extends Controller
                 (new MediaSosial([
                     'link_accname' => $link_akun,
                     'vendor' => $request->get('vendor')[$index],
-                    'usaha_id' => $request->get('id')
+                    'usaha_id' => $usaha->id
                 ]))->save();
             }
         }
@@ -121,7 +121,7 @@ class UsahaController extends Controller
         if ($request->has('produk_nama') && count($request->get('produk_nama')) > 0 ) {
             foreach ($request->get('produk_nama') as $index => $nama_produk) {
                 $produk = new ProdukUnggulan([
-                    'usaha_id' => $request->get('id'),
+                    'usaha_id' => $usaha->id,
                     'nama' => $nama_produk,
                     'deskripsi' => $request->has('produk_deskripsi')
                         ? array_key_exists($index, $request->get('produk_deskripsi'))
