@@ -95,42 +95,6 @@
                                     </a>
                                 </li>
                             @endcan
-                            @can('media_sosial_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("admin.media-sosials.index") }}" class="nav-link {{ request()->is("admin/media-sosials") || request()->is("admin/media-sosials/*") ? "active" : "" }}">
-                                        <i class="fa-fw nav-icon fab fa-hubspot">
-
-                                        </i>
-                                        <p>
-                                            {{ trans('cruds.mediaSosial.title') }}
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('produk_unggulan_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("admin.produk-unggulans.index") }}" class="nav-link {{ request()->is("admin/produk-unggulans") || request()->is("admin/produk-unggulans/*") ? "active" : "" }}">
-                                        <i class="fa-fw nav-icon far fa-star">
-
-                                        </i>
-                                        <p>
-                                            {{ trans('cruds.produkUnggulan.title') }}
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('foto_produk_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("admin.foto-produks.index") }}" class="nav-link {{ request()->is("admin/foto-produks") || request()->is("admin/foto-produks/*") ? "active" : "" }}">
-                                        <i class="fa-fw nav-icon fas fa-images">
-
-                                        </i>
-                                        <p>
-                                            {{ trans('cruds.fotoProduk.title') }}
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
                         </ul>
                     </li>
                 @endcan
