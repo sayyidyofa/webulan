@@ -11,11 +11,12 @@
             @method('PUT')
             @csrf
             <div class="form-group">
-                <label class="required" for="id">NIB</label>
-                <input class="form-control {{ $errors->has('id') ? 'is-invalid' : '' }}" type="text" name="id" id="id" value="{{ old('id', $usaha->id) }}" required>
-                @if($errors->has('id'))
-                    <span class="text-danger">{{ $errors->first('id') }}</span>
+                <label class="required" for="nib">NIB</label>
+                <input class="form-control {{ $errors->has('nib') ? 'is-invalid' : '' }}" type="text" name="nib" id="nib" value="{{ old('nib', $usaha->nib) }}" required>
+                @if($errors->has('nib'))
+                    <span class="text-danger">{{ $errors->first('nib') }}</span>
                 @endif
+                <span class="help-block">Nomor Induk Berusaha</span>
             </div>
             <div class="form-group">
                 <label class="required" for="nama">{{ trans('cruds.usaha.fields.nama') }}</label>

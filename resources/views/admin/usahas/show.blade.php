@@ -23,7 +23,7 @@
                                 {{ trans('cruds.usaha.fields.id') }}
                             </th>
                             <td>
-                                {{ $usaha->id }}
+                                {{ $usaha->nib }}
                             </td>
                         </tr>
                         <tr>

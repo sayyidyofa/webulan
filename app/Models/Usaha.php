@@ -11,6 +11,7 @@ use \DateTimeInterface;
  *
  * @property int $id
  * @property string $nama
+ * @property string $nib
  * @property string $brand
  * @property string $deskripsi
  * @property string $kategori
@@ -33,6 +34,7 @@ use \DateTimeInterface;
  * @method static \Illuminate\Database\Eloquent\Builder|Usaha whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Usaha whereDeskripsi($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Usaha whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Usaha whereNib($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Usaha whereKategori($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Usaha whereKegiatan($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Usaha whereKontak($value)
@@ -54,7 +56,7 @@ class Usaha extends Model
     ];
 
     protected $fillable = [
-        'id',
+        'nib',
         'nama',
         'brand',
         'pengusaha_id',
