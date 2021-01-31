@@ -17,6 +17,10 @@ class UpdateUsahaRequest extends FormRequest
     public function rules()
     {
         return [
+            'nib'    => [
+                'regex:/^[0-9]+$/g',
+                'required',
+            ],
             'nama'         => [
                 'string',
                 'required',

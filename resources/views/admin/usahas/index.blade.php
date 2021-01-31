@@ -49,7 +49,7 @@
                                 {{ $loop->iteration }}
                             </td>
                             <td>
-                                {{ $usaha->id ?? '' }}
+                                {{ $usaha->nib ?? '' }}
                             </td>
                             <td>
                                 {{ $usaha->brand ?? '' }}

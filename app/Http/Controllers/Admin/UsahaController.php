@@ -90,7 +90,7 @@ class UsahaController extends Controller
 
     public function storeComplete(StoreUsahaCompleteRequest $request) {
         $usaha = new Usaha([
-            'id' => $request->get('id'),
+            'nib' => $request->get('nib'),
             'nama' => $request->get('nama'),
             'brand' => $request->get('brand'),
             'pengusaha_id' => $request->get('pengusaha_id'),

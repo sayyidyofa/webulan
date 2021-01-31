@@ -19,12 +19,9 @@ class StoreUsahaCompleteRequest extends FormRequest
     public function rules()
     {
         return [
-            'id'    => [
+            'nib'    => [
+                'regex:/^[0-9]+$/g',
                 'required',
-                'integer',
-                'min:1',
-                'max:2147483647',
-                'unique:usahas,id',
             ],
             'nama'         => [
                 'string',
