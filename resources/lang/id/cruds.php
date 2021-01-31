@@ -86,7 +86,7 @@ return [
             'kontak'             => 'Kontak',
             'kontak_helper'      => 'Kontak usaha',
             'alamat'        => 'Alamat usaha',
-            'alamat_maps_helper' => 'Silahkan tuliskan alamat lengkap usaha',
+            'alamat_helper' => 'Silahkan tuliskan alamat lengkap usaha',
             'maps' => 'Link maps',
             'maps_helper' => 'Opsional. Link google maps lokasi usaha',
             'kegiatan'           => 'Kegiatan',
