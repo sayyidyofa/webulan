@@ -31,14 +31,6 @@
                             {{ $pengusaha->nama }}
                         </td>
                     </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.pengusaha.fields.user') }}
-                        </th>
-                        <td>
-                            {{ $pengusaha->user->email ?? '' }}
-                        </td>
-                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

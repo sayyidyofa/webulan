@@ -26,9 +26,6 @@
                             {{ trans('cruds.pengusaha.fields.nama') }}
                         </th>
                         <th>
-                            {{ trans('cruds.pengusaha.fields.user') }}
-                        </th>
-                        <th>
                             {{ trans('global.actions') }}
                         </th>
                     </tr>
@@ -41,9 +38,6 @@
                             </td>
                             <td>
                                 {{ $pengusaha->nama ?? '' }}
-                            </td>
-                            <td>
-                                {{ $pengusaha->user->email ?? '' }}
                             </td>
                             <td>
                                 @can('pengusaha_show')

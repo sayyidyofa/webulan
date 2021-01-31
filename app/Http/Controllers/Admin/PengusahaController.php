@@ -18,20 +18,16 @@ class PengusahaController extends Controller
     {
         abort_if(Gate::denies('pengusaha_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $pengusahas = Pengusaha::with(['user'])->get();
+        $pengusahas = Pengusaha::all();
 
-        $users = User::get();
-
-        return view('admin.pengusahas.index', compact('pengusahas', 'users'));
+        return view('admin.pengusahas.index', compact('pengusahas'));
     }
 
     public function create()
     {
         abort_if(Gate::denies('pengusaha_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::all()->pluck('email', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.pengusahas.create', compact('users'));
+        return view('admin.pengusahas.create');
     }
 
     public function store(StorePengusahaRequest $request)
@@ -45,11 +41,7 @@ class PengusahaController extends Controller
     {
         abort_if(Gate::denies('pengusaha_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::all()->pluck('email', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $pengusaha->load('user');
-
-        return view('admin.pengusahas.edit', compact('users', 'pengusaha'));
+        return view('admin.pengusahas.edit', compact('pengusaha'));
     }
 
     public function update(UpdatePengusahaRequest $request, Pengusaha $pengusaha)
@@ -62,8 +54,6 @@ class PengusahaController extends Controller
     public function show(Pengusaha $pengusaha)
     {
         abort_if(Gate::denies('pengusaha_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $pengusaha->load('user', 'pengusahaUsahas');
 
         return view('admin.pengusahas.show', compact('pengusaha'));
     }

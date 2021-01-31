@@ -21,10 +21,6 @@ class StorePengusahaRequest extends FormRequest
                 'string',
                 'required',
             ],
-            'user_id' => [
-                'required',
-                'integer',
-            ],
         ];
     }
 }

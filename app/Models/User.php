@@ -29,8 +29,6 @@ use \DateTimeInterface;
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles
  * @property-read int|null $roles_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Pengusaha[] $userPengusahas
- * @property-read int|null $user_pengusahas_count
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()
@@ -85,11 +83,6 @@ class User extends Authenticatable
     public function getIsAdminAttribute()
     {
         return $this->roles()->where('id', 1)->exists();
-    }
-
-    public function userPengusahas()
-    {
-        return $this->hasMany(Pengusaha::class, 'user_id', 'id');
     }
 
     public function getEmailVerifiedAtAttribute($value)

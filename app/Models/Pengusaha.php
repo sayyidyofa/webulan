@@ -13,10 +13,8 @@ use \DateTimeInterface;
  * @property string $nama
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property int $user_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Usaha[] $pengusahaUsahas
  * @property-read int|null $pengusaha_usahas_count
- * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Pengusaha newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Pengusaha newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Pengusaha query()
@@ -24,7 +22,6 @@ use \DateTimeInterface;
  * @method static \Illuminate\Database\Eloquent\Builder|Pengusaha whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pengusaha whereNama($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pengusaha whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pengusaha whereUserId($value)
  * @mixin \Eloquent
  */
 class Pengusaha extends Model
@@ -41,7 +38,6 @@ class Pengusaha extends Model
 
     protected $fillable = [
         'nama',
-        'user_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -55,10 +51,5 @@ class Pengusaha extends Model
     public function pengusahaUsahas()
     {
         return $this->hasMany(Usaha::class, 'pengusaha_id', 'id');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
     }
 }
