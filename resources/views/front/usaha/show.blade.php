@@ -35,7 +35,8 @@
                     <div class="portfolio-wrap">
                         <img src="{{ $media->getUrl() }}" class="img-fluid" alt=""> <!-- Foto Produk -->
                         <div class="portfolio-info">
-                            <p>{{$produkUnggulan->nama}}</p> <!-- Nama Foto Produk -->
+                            <h4 style="color: white;">{{$produkUnggulan->nama}}</h4>
+                            <p style="text-transform: lowercase;">{{$produkUnggulan->deskripsi}}</p> <!-- Nama Foto Produk -->
                             <div>
                                 <a href="{{ $media->getUrl() }}" data-lightbox="portfolio" data-title="{{$produkUnggulan->nama}}" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a> <!-- data-title berisi nama produk -->
                             </div>

@@ -20,7 +20,7 @@
     <!--==========================
             Statistik
             ============================-->
-    <section id="why-us" class="wow fadeIn" style="background: #494648;">
+    <section id="why-us" class="wow fadeIn">
         <div class="container">
             <header class="section-header">
                 <h3>Statistik UMKM</h3>
