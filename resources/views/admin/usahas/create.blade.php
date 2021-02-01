@@ -359,8 +359,11 @@
 
         // Apakah sosmed pertama diisi namanya? Jika iya, radio required
         let firstSosmedRadioElement = document.getElementById('vendor_1_{{ array_keys(App\Models\MediaSosial::VENDOR_RADIO)[0] }}');
-        document.getElementById('sosmed_acc_1').addEventListener('change', (e) => {
+        document.getElementById('sosmed_acc_1').addEventListener('keyup', (e) => {
             firstSosmedRadioElement.required = e.target.value.length > 0
         });
+
+
+
     </script>
 @endsection
