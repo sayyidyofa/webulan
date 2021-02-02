@@ -14,8 +14,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --optimize-autoloader --no-dev
-    - name: Generate app caches
-      run: php artisan config:cache && php artisan route:cache && php artisan view:cache
     - name: Write .env file
       run: |
         echo -e 'APP_NAME="Webulan"' > .env
