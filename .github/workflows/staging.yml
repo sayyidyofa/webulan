@@ -2,9 +2,7 @@ name: Laravel
 
 on:
   push:
-    branches: [ staging ]
-  pull_request:
-    branches: [ staging ]
+    branches: [ master ]
 
 jobs:
   deploy-staging:
@@ -51,11 +49,11 @@ jobs:
         echo -e '.editorconfig' >> exclude-list.txt
         echo -e 'exclude-list.txt' >> exclude-list.txt
     - name: Adding Host key to know_hosts file
-      run: mkdir -p ~/.ssh ssh-keyscan -t rsa ${{ secrets.SERVER_HOSTNAME }} >> ~/.ssh/known_hosts    
+      run: mkdir -p ~/.ssh && ssh-keyscan -t rsa ${{ secrets.SERVER_HOSTNAME }} >> ~/.ssh/known_hosts
     - name: Deploy to staging Server via Rsync
       uses: trendyminds/github-actions-rsync@master
       with:
-        RSYNC_OPTIONS: -avzr --delete --exclude node_modules --exclude '.git*'
+        RSYNC_OPTIONS: rsync -azvW --delete --exclude-from 'exclude-list.txt'
         RSYNC_TARGET: ${{ secrets.DEPLOY_PATH }}
         RSYNC_SOURCE: $GITHUB_WORKSPACE
       env:
