@@ -67,19 +67,9 @@ jobs:
           SERVER_DESTINATION: ${{ secrets.DEPLOY_PATH }}
     - name: Run Script over SSH
       uses: appleboy/ssh-action@master
-      env: 
-          deploy_path: ${{ secrets.DEPLOY_PATH }}
-          second_username: ${{ secrets.SECOND_USERNAME }}
       with:
         host: ${{ secrets.SERVER_HOSTNAME }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        envs: deploy_path,second_username
-        script: |
-          chown -R $second_username:www-data $deploy_path
-          find $deploy_path -type f -exec chmod 664 {} \;
-          find $deploy_path -type d -exec chmod 775 {} \;
-          chgrp -R www-data $deploy_path/storage $deploy_path/bootstrap/cache
-          chmod -R ug+rwx $deploy_path/storage $deploy_path/bootstrap/cache
-          ln -s $deploy_path/storage/app/public $deploy_path/public/storage
+        script: ./tidy-permission.sh
           
