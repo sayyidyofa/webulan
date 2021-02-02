@@ -13,7 +13,9 @@ jobs:
         php-version: '7.4'
     - uses: actions/checkout@v2
     - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --optimize-autoloader --no-dev
+    - name: Generate app caches
+      run: php artisan config:cache && php artisan route:cache && php artisan view:cache
     - name: Write .env file
       run: |
         echo -e 'APP_NAME="Webulan"' > .env
@@ -47,6 +49,9 @@ jobs:
         echo -e 'test' >> exclude-list.txt
         echo -e 'phpunit.xml' >> exclude-list.txt
         echo -e '.editorconfig' >> exclude-list.txt
+        echo -e 'database' >> exclude-list.txt
+        echo -e 'tests' >> exclude-list.txt
+        echo -e 'README.md' >> exclude-list.txt
         echo -e 'exclude-list.txt' >> exclude-list.txt
     - name: Adding Host key to know_hosts file
       run: mkdir -p ~/.ssh && ssh-keyscan -H ${{ secrets.SERVER_HOSTNAME }} >> ~/.ssh/known_hosts
@@ -69,15 +74,12 @@ jobs:
         host: ${{ secrets.SERVER_HOSTNAME }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
+        envs: deploy_path,second_username
         script: |
-          composer install --optimize-autoloader --no-dev
-          php artisan config:cache
-          php artisan route:cache
-          php artisan view:cache
-          chown -R $second_username:www-data
+          chown -R $second_username:www-data $deploy_path
           find $deploy_path -type f -exec chmod 664 {} \;
           find $deploy_path -type d -exec chmod 775 {} \;
           chgrp -R www-data $deploy_path/storage $deploy_path/bootstrap/cache
-          chmod -R ug+rwx $deploy_path/storage $deploy_pathbootstrap/cache
+          chmod -R ug+rwx $deploy_path/storage $deploy_path/bootstrap/cache
           ln -s $deploy_path/storage/app/public $deploy_path/public/storage
           
