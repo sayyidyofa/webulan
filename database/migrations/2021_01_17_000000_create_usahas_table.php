@@ -11,7 +11,6 @@ class CreateUsahasTable extends Migration
         Schema::create('usahas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nib');
-            $table->string('nama');
             $table->string('brand');
             $table->string('deskripsi');
             $table->string('kategori');

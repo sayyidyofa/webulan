@@ -21,10 +21,6 @@ class StoreUsahaRequest extends FormRequest
                 'regex:/^[0-9]+$/',
                 'required',
             ],
-            'nama'         => [
-                'string',
-                'required',
-            ],
             'brand'        => [
                 'string',
                 'required',

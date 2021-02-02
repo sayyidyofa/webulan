@@ -10,7 +10,6 @@ use \DateTimeInterface;
  * App\Models\Usaha
  *
  * @property int $id
- * @property string $nama
  * @property string $nib
  * @property string $brand
  * @property string $deskripsi
@@ -39,7 +38,6 @@ use \DateTimeInterface;
  * @method static \Illuminate\Database\Eloquent\Builder|Usaha whereKategori($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Usaha whereKegiatan($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Usaha whereKontak($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Usaha whereNama($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Usaha wherePengusahaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Usaha whereUpdatedAt($value)
  * @mixin \Eloquent
@@ -58,7 +56,6 @@ class Usaha extends Model
 
     protected $fillable = [
         'nib',
-        'nama',
         'brand',
         'pengusaha_id',
         'deskripsi',

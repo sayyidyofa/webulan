@@ -28,14 +28,6 @@
                         </tr>
                         <tr>
                             <th>
-                                {{ trans('cruds.usaha.fields.nama') }}
-                            </th>
-                            <td>
-                                {{ $usaha->nama }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
                                 {{ trans('cruds.usaha.fields.brand') }}
                             </th>
                             <td>
