@@ -1,0 +1,86 @@
+name: Laravel
+
+on:
+  push:
+    branches: [ staging ]
+  pull_request:
+    branches: [ staging ]
+
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: shivammathur/setup-php@b7d1d9c9a92d8d8463ce36d7f60da34d461724f8
+      with:
+        php-version: '7.4'
+    - uses: actions/checkout@v2
+    - name: Install Dependencies
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+    - name: Write .env file
+      run: |
+        echo -e 'APP_NAME="Webulan"' > .env
+        echo -e 'APP_ENV=production' >> .env
+        echo -e 'APP_KEY='${APP_KEY} >> .env
+        echo -e 'APP_DEBUG=false' >> .env
+        echo -e 'LOG_CHANNEL=daily' >> .env
+        echo -e 'DB_CONNECTION=mysql' >> .env
+        echo -e 'DB_HOST=localhost' >> .env
+        echo -e 'DB_PORT=${DB_PORT}' >> .env
+        echo -e 'DB_DATABASE=${DB_DATABASE}' >> .env
+        echo -e 'DB_USERNAME=${DB_USERNAME}' >> .env
+        echo -e 'DB_PASSWORD=${DB_PASSWORD}' >> .env
+        echo -e 'BROADCAST_DRIVER=log' >> .env
+        echo -e 'CACHE_DRIVER=file' >> .env
+        echo -e 'QUEUE_CONNECTION=sync' >> .env
+        echo -e 'SESSION_DRIVER=file' >> .env
+        echo -e 'SESSION_LIFETIME=120' >> .env
+    - name: Install Rsync
+      run: sudo apt update && sudo apt install rsync
+    - name: Create rsync exclude.txt
+      run: |
+        echo -e '.git' >> exclude-list.txt
+        echo -e '.env.example' >> exclude-list.txt
+        echo -e '.gitattributes' >> exclude-list.txt
+        echo -e '.gitignore' >> exclude-list.txt
+        echo -e '.styleci.yml' >> exclude-list.txt
+        echo -e '_ide_helper.php' >> exclude-list.txt
+        echo -e '.idea' >> exclude-list.txt
+        echo -e '.env.example' >> exclude-list.txt
+        echo -e 'test' >> exclude-list.txt
+        echo -e 'phpunit.xml' >> exclude-list.txt
+        echo -e '.editorconfig' >> exclude-list.txt
+        echo -e 'exclude-list.txt' >> exclude-list.txt
+    - name: Adding Host key to know_hosts file
+      run: ssh-keyscan -t rsa ${{ secrets.SERVER_HOSTNAME }} >> ~/.ssh/known_hosts    
+    - name: Deploy to sandbox via rsync
+      uses: trendyminds/github-actions-rsync@master
+      with:
+        RSYNC_OPTIONS: -avzr --delete --exclude node_modules --exclude '.git*'
+        RSYNC_TARGET: ${{ secrets.DEPLOY_PATH }}
+        RSYNC_SOURCE: $GITHUB_WORKSPACE
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+        SSH_HOSTNAME: ${{ secrets.SERVER_HOSTNAME }}
+    - name: Run Script over SSH
+      uses: appleboy/ssh-action@master
+      env: 
+          deploy_path: ${{ secrets.DEPLOY_PATH }}
+          second_username: ${{ secrets.SECOND_USERNAME }}
+      with:
+        host: ${{ secrets.SERVER_HOSTNAME }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd $deploy_path &&
+          composer install --optimize-autoloader --no-dev &&
+          php artisan config:cache && 
+          php artisan route:cache && 
+          php artisan view:cache &&
+          chown -R $second_username:www-data &&
+          find $deploy_path -type f -exec chmod 664 {} \; &&
+          find $deploy_path -type d -exec chmod 775 {} \; &&
+          chgrp -R www-data storage bootstrap/cache &&
+          chmod -R ug+rwx storage bootstrap/cache &&
+          ln -s $deploy_path/storage/app/public $deploy_path/public/storage
+          
