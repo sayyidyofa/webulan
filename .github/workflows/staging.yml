@@ -8,8 +8,6 @@ jobs:
   deploy-staging:
     runs-on: ubuntu-latest
     steps:
-    - name: Print value of $GITHUB_WORKSPACE
-      run: echo "Value of GITHUB_WORKSPACE is $GITHUB_WORKSPACE"
     - uses: shivammathur/setup-php@b7d1d9c9a92d8d8463ce36d7f60da34d461724f8
       with:
         php-version: '7.4'
@@ -51,17 +49,17 @@ jobs:
         echo -e '.editorconfig' >> exclude-list.txt
         echo -e 'exclude-list.txt' >> exclude-list.txt
     - name: Adding Host key to know_hosts file
-      run: mkdir -p ~/.ssh && ssh-keyscan -t rsa ${{ secrets.SERVER_HOSTNAME }} >> ~/.ssh/known_hosts
+      run: mkdir -p ~/.ssh && ssh-keyscan -H ${{ secrets.SERVER_HOSTNAME }} >> ~/.ssh/known_hosts
     - name: Deploy to staging Server via Rsync
-      uses: jaredpalmer/github-actions-rsync@master
-      with:
-        RSYNC_OPTIONS: rsync -azvW --delete --exclude-from 'exclude-list.txt'
-        RSYNC_TARGET: ${{ secrets.DEPLOY_PATH }}
-        RSYNC_SOURCE: /src
+      uses: AEnterprise/rsync-deploy@v1.0
       env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-        SSH_HOSTNAME: ${{ secrets.SERVER_HOSTNAME }}
+          DEPLOY_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-azvW --delete --exclude-from exclude-list.txt"
+          SERVER_PORT: ${{ secrets.SERVER_PORT }}
+          FOLDER: "./"
+          SERVER_IP: ${{ secrets.SERVER_HOSTNAME }}
+          USERNAME: ${{ secrets.SSH_USERNAME }}
+          SERVER_DESTINATION: ${{ secrets.DEPLOY_PATH }}
     - name: Run Script over SSH
       uses: appleboy/ssh-action@master
       env: 
@@ -72,15 +70,14 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          cd $deploy_path &&
-          composer install --optimize-autoloader --no-dev &&
-          php artisan config:cache && 
-          php artisan route:cache && 
-          php artisan view:cache &&
-          chown -R $second_username:www-data &&
-          find $deploy_path -type f -exec chmod 664 {} \; &&
-          find $deploy_path -type d -exec chmod 775 {} \; &&
-          chgrp -R www-data storage bootstrap/cache &&
-          chmod -R ug+rwx storage bootstrap/cache &&
+          composer install --optimize-autoloader --no-dev
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+          chown -R $second_username:www-data
+          find $deploy_path -type f -exec chmod 664 {} \;
+          find $deploy_path -type d -exec chmod 775 {} \;
+          chgrp -R www-data $deploy_path/storage $deploy_path/bootstrap/cache
+          chmod -R ug+rwx $deploy_path/storage $deploy_pathbootstrap/cache
           ln -s $deploy_path/storage/app/public $deploy_path/public/storage
           
