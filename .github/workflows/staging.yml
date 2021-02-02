@@ -20,15 +20,15 @@ jobs:
       run: |
         echo -e 'APP_NAME="Webulan"' > .env
         echo -e 'APP_ENV=production' >> .env
-        echo -e 'APP_KEY='${APP_KEY} >> .env
+        echo -e 'APP_KEY='${{ secrets.APP_KEY }} >> .env
         echo -e 'APP_DEBUG=false' >> .env
         echo -e 'LOG_CHANNEL=daily' >> .env
         echo -e 'DB_CONNECTION=mysql' >> .env
         echo -e 'DB_HOST=localhost' >> .env
-        echo -e 'DB_PORT=${DB_PORT}' >> .env
-        echo -e 'DB_DATABASE=${DB_DATABASE}' >> .env
-        echo -e 'DB_USERNAME=${DB_USERNAME}' >> .env
-        echo -e 'DB_PASSWORD=${DB_PASSWORD}' >> .env
+        echo -e 'DB_PORT=${{ secrets.DB_PORT }}' >> .env
+        echo -e 'DB_DATABASE=${{ secrets.DB_DATABASE }}' >> .env
+        echo -e 'DB_USERNAME=${{ secrets.DB_USERNAME }}' >> .env
+        echo -e 'DB_PASSWORD=${{ secrets.DB_PASSWORD }}' >> .env
         echo -e 'BROADCAST_DRIVER=log' >> .env
         echo -e 'CACHE_DRIVER=file' >> .env
         echo -e 'QUEUE_CONNECTION=sync' >> .env
