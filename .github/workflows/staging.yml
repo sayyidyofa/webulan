@@ -51,8 +51,8 @@ jobs:
         echo -e '.editorconfig' >> exclude-list.txt
         echo -e 'exclude-list.txt' >> exclude-list.txt
     - name: Adding Host key to know_hosts file
-      run: ssh-keyscan -t rsa ${{ secrets.SERVER_HOSTNAME }} >> ~/.ssh/known_hosts    
-    - name: Deploy to sandbox via rsync
+      run: mkdir -p ~/.ssh ssh-keyscan -t rsa ${{ secrets.SERVER_HOSTNAME }} >> ~/.ssh/known_hosts    
+    - name: Deploy to staging Server via Rsync
       uses: trendyminds/github-actions-rsync@master
       with:
         RSYNC_OPTIONS: -avzr --delete --exclude node_modules --exclude '.git*'
