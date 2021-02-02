@@ -18,14 +18,6 @@
                 <span class="help-block">Nomor Induk Berusaha</span>
             </div>
             <div class="form-group">
-                <label class="required" for="nama">{{ trans('cruds.usaha.fields.nama') }}</label>
-                <input class="form-control {{ $errors->has('nama') ? 'is-invalid' : '' }}" type="text" name="nama" id="nama" value="{{ old('nama', '') }}" required>
-                @if($errors->has('nama'))
-                    <span class="text-danger">{{ $errors->first('nama') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.usaha.fields.nama_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label class="required" for="brand">{{ trans('cruds.usaha.fields.brand') }}</label>
                 <input class="form-control {{ $errors->has('brand') ? 'is-invalid' : '' }}" type="text" name="brand" id="brand" value="{{ old('brand', '') }}" required>
                 @if($errors->has('brand'))
