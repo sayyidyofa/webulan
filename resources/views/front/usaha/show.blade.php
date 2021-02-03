@@ -10,8 +10,7 @@
         <div class="container" style="padding-top: 50px;">
             <header class="section-header">
                 <h3>{{$usaha->brand}}</h3>
-                <p>Nomor Induk Berusaha : {{$usaha->nib}}<br><br>
-                    UMKM {{$usaha->brand}} adalah UMKM milik {{$usaha->pengusaha->nama}} yang bergerak di bidang {{$usaha->kategori}}. UMKM {{$usaha->brand}} adalah {{$usaha->deskripsi}}.</p>
+                <p>UMKM {{$usaha->brand}} adalah UMKM milik {{$usaha->pengusaha->nama}} yang bergerak di bidang {{$usaha->kategori}}.<br> UMKM {{$usaha->brand}} adalah {{$usaha->deskripsi}}.</p>
             </header>
         </div>
     </section>
@@ -70,7 +69,7 @@
                     <div class="row">
                         <p>Media Sosial : <br>
                             @foreach($usaha->usahaMediaSosials as $mediaSosial)
-                            @if ($mediaSosial->vendor == "website sendiri")
+                            @if ($mediaSosial->vendor == "website")
                             <i class="fa fa-link" aria-hidden="true"></i><a href="{{$mediaSosial->link_accname}}" target="_blank" title="Website"> {{$mediaSosial->link_accname}}</a><br>
                             @elseif ($mediaSosial->vendor == "instagram")
                             <i class="fa fa-instagram" aria-hidden="true"></i><a href="https://www.instagram.com/{{$mediaSosial->link_accname}}" target="_blank" title="Instagram"> {{$mediaSosial->link_accname}}</a><br>
