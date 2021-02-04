@@ -3,17 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ImportUsahaCompleteRequest;
 use App\Http\Requests\MassDestroyUsahaRequest;
 use App\Http\Requests\StoreUsahaCompleteRequest;
 use App\Http\Requests\StoreUsahaRequest;
 use App\Http\Requests\UpdateUsahaRequest;
+use App\Imports\CompleteUsahaImport;
 use App\Models\FotoProduk;
 use App\Models\MediaSosial;
 use App\Models\Pengusaha;
 use App\Models\ProdukUnggulan;
 use App\Models\Usaha;
 use Gate;
-use Illuminate\Http\Request;
+use Maatwebsite\Excel\Exceptions\LaravelExcelException;
+use Maatwebsite\Excel\Validators\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 class UsahaController extends Controller
@@ -139,6 +142,15 @@ class UsahaController extends Controller
                 }
             }
         }
+
+        return redirect()->route('admin.usahas.index');
+    }
+
+    public function importComplete(ImportUsahaCompleteRequest $request) {
+        rename($request->file('file')->getPathname(), $request->file('file')->getPathname().'.'.$request->file('file')->getClientOriginalExtension());
+        (new CompleteUsahaImport)->import($request->file('file')->getPathname().'.'.$request->file('file')->getClientOriginalExtension());
+
+        session()->put('excelMessage', 'Data berhasil di-import!');
 
         return redirect()->route('admin.usahas.index');
     }

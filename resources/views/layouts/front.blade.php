@@ -26,6 +26,7 @@
 
   <!-- Main Stylesheet File -->
   <link href="{{ asset('front/css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('front/css/carousel.css') }}" rel="stylesheet">
   <link href="{{ asset('front/lib/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
   <!-- Ganti gambar background home -->
@@ -33,9 +34,8 @@
     #intro {
       width: 100%;
       position: relative;
-      background: url("{{ asset('front/img/image.jpg') }}") center bottom no-repeat;
+      background: url("{{ asset('front/img/bg-front.jpeg') }}") center bottom no-repeat;
       background-size: cover;
-      padding: 200px 0 120px 0;
     }
   </style>
 
@@ -62,7 +62,7 @@ Header
   <footer id="footer" style="background-color: #5069c3;">
     <div class="container">
       <div class="copyright">
-        {{ Date('Y') }} &copy; <strong>Kelurahan Bulusan</strong>
+        {{ Date('Y') }} &copy; <a href="http://bulusan.semarangkota.go.id/" style="color: black;" target="_blank"><strong>Kelurahan Bulusan</strong></a>
       </div>
       <div class="credits">
         Dibuat oleh KKN Tim I UNDIP Tahun 2021
@@ -93,18 +93,30 @@ Header
   <script src="{{ asset('front/js/main.js') }}"></script>
 
   <script>
-    // Testimonials carousel (uses the Owl Carousel library)
-    $(document).ready(function() {
-      $("#carousel").owlCarousel({
-        autoplay: true,
-        dots: true,
-        loop: true,
-        margin: 10
-      });
-    });
     $(document).ready(function() {
       $('#example').DataTable();
     });
+    $('#carousel-example').on('slide.bs.carousel', function(e) {
+      var $e = $(e.relatedTarget);
+      var idx = $e.index();
+      var itemsPerSlide = 3;
+      var totalItems = $('.carousel-item').length;
+
+      if (idx >= totalItems - (itemsPerSlide - 1)) {
+        var it = itemsPerSlide - (totalItems - idx);
+        for (var i = 0; i < it; i++) {
+          // append slides to end
+          if (e.direction == "left") {
+            $('.carousel-item').eq(i).appendTo('.carousel-inner');
+          } else {
+            $('.carousel-item').eq(0).appendTo('.carousel-inner');
+          }
+        }
+      }
+    });
+    $('.carousel').carousel({
+      interval: 2000
+    })
   </script>
 
 </body>

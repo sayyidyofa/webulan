@@ -6,6 +6,19 @@
             <a class="btn btn-success" href="{{ route('admin.usahas.create') }}">
                 {{ trans('global.add') }} {{ trans('cruds.usaha.title_singular') }}
             </a>
+            <a href="{{ asset('UsahaImportTemplate(UbahIsinya).xlsx') }}" class="btn btn-info">
+                Download Template Import Excel
+            </a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form action="{{ route('admin.usahas.importComplete') }}" enctype="multipart/form-data" method="post">
+                @csrf
+                <label for="file">Upload File Excel Data UMKM (Harus sesuai format template)</label>
+                <input type="file" name="file" required>
+                <button type="submit" class="btn btn-dark">Upload</button>
+            </form>
         </div>
     </div>
 @endcan

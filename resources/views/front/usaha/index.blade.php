@@ -8,14 +8,14 @@
     <div class="container">
         <div class="intro-info">
             <div>
-                <h4 style="color: white;">Selamat Datang di</h4>
+                <h4><mark style="opacity: 0.7; background-color:floralwhite">Selamat Datang di</mark></h4>
             </div>
-            <h2>Website UMKM Kelurahan Bulusan</h2>
+            <h2><mark style="opacity: 0.8; background-color:ghostwhite">Website UMKM Kelurahan Bulusan</mark></h2>
         </div>
     </div>
 </section><!-- #intro -->
 
-<main id="main">
+<main id=" main">
 
     <!--==========================
             Statistik
@@ -41,6 +41,53 @@
             </div>
 
         </div>
+    </section>
+
+    <section id="testimonials" class="section-bg">
+        <div class="container col-lg-12">
+            <header class="section-header">
+                <h3>Dokumentasi Kegiatan UMKM</h3>
+            </header>
+            <div class="container-fluid">
+                <div id="carousel-example" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                        <div class="carousel-item col-12 col-sm-6 col-md-6 col-lg-4 active">
+                            <img src="{{ asset('front/img/favicon.png') }}" class="img-fluid mx-auto d-block" alt="img3">
+                            <div class="text-center">
+                                <p>Caption gambar 1. ayo dibikin rada panjangan, kita liat kayak apa bentuknya</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item col-12 col-sm-6 col-md-6 col-lg-4">
+                            <img src="{{ asset('front/img/intro-bg.png') }}" class="img-fluid mx-auto d-block" alt="img4">
+                        </div>
+                        <div class="carousel-item col-12 col-sm-6 col-md-6 col-lg-4">
+                            <img src="{{ asset('front/img/kelurahan.jpg') }}" class="img-fluid mx-auto d-block" alt="img5">
+                        </div>
+                        <div class="carousel-item col-12 col-sm-6 col-md-6 col-lg-4">
+                            <img src="{{ asset('front/img/logo-pemkot.png') }}" class="img-fluid mx-auto d-block" alt="img6">
+                        </div>
+                        <div class="carousel-item col-12 col-sm-6 col-md-6 col-lg-4">
+                            <img src="{{ asset('front/img/image.jpg') }}" class="img-fluid mx-auto d-block" alt="img7">
+                        </div>
+                        <div class="carousel-item col-12 col-sm-6 col-md-6 col-lg-4">
+                            <img src="{{ asset('front/img/logobaru.png') }}" class="img-fluid mx-auto d-block" alt="img8">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev" style="color: black;">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel-example" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+
     </section>
 
     <!--==========================

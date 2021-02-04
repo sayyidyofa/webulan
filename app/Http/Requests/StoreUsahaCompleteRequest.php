@@ -56,7 +56,7 @@ class StoreUsahaCompleteRequest extends FormRequest
                 'nullable',
             ],
             'sosmed_acc' => 'sometimes|array',
-            'vendor' => 'required_with:sosmed_acc|array',
+            'vendor' => 'sometimes|array',
             'produk_nama' => 'sometimes|array',
             'produk_deskripsi' => 'nullable|array',
             'foto_.*' => 'sometimes|array'
