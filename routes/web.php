@@ -33,6 +33,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('usahas/destroy', 'UsahaController@massDestroy')->name('usahas.massDestroy');
     Route::resource('usahas', 'UsahaController');
     Route::post('usahas/complete', 'UsahaController@storeComplete')->name('usahas.storeComplete');
+    Route::post('usahas/importComplete', 'UsahaController@importComplete')->name('usahas.importComplete');
 
     // Pengusahas
     Route::delete('pengusahas/destroy', 'PengusahaController@massDestroy')->name('pengusahas.massDestroy');
