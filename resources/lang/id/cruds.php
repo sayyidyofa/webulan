@@ -177,4 +177,20 @@ return [
             'produk_unggulan_helper' => ' ',
         ],
     ],
+    'dokumentasi'      => [
+        'title'          => 'Dokumentasi Kegiatan',
+        'title_singular' => 'Dokumentasi Kegiatan',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => ' ',
+            'kegiatan'          => 'Kegiatan',
+            'kegiatan_helper'   => 'Keterangan Kegiatan',
+            'foto'              => 'Foto',
+            'foto_helper'       => 'Pilih satu foto kegiatan, max ukuran 2MB',
+            'created_at'        => 'Created at',
+            'created_at_helper' => ' ',
+            'updated_at'        => 'Updated at',
+            'updated_at_helper' => ' ',
+        ],
+    ],
 ];

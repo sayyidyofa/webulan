@@ -54,9 +54,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('foto-produks', 'FotoProdukController');
     Route::post('foto-produks/quick-delete', 'FotoProdukController@quickDelete')->name('foto-produks.quickDelete');
 
+    // Dokumentasi
+    Route::resource('dokumentasis', 'DokumentasiController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
-// Change password
+    // Change password
     if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php'))) {
         Route::get('password', 'ChangePasswordController@edit')->name('password.edit');
         Route::post('password', 'ChangePasswordController@update')->name('password.update');

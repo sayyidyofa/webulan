@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Sistem Informasi UMKM Kelurahan Bulusan</title>
+  <title>Website UMKM Kelurahan Bulusan</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -36,6 +36,15 @@
       position: relative;
       background: url("{{ asset('front/img/bg-front.jpeg') }}") center bottom no-repeat;
       background-size: cover;
+    }
+
+    .tombol {
+      background-color: #A9A9A9;
+      color: white;
+      opacity: 0.8;
+      border-radius: 80%;
+      height: 50px;
+      width: 50px;
     }
   </style>
 
