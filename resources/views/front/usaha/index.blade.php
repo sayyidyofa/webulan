@@ -51,14 +51,20 @@
             <div class="container-fluid">
                 <div id="carousel-example" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                        @if($dokumentasi->count() > 0)
                         @foreach($dokumentasi as $foto)
-                        <div class="carousel-item col-12 col-sm-6 col-md-6 col-lg-4 {{($foto->id == 1) ? 'active' : ''}}">
+                        <div class="carousel-item col-12 col-sm-6 col-md-6 col-lg-4 {{($foto->file_name == $foto->first()->file_name) ? 'active' : ''}}">
                             <img src="{{ asset('storage/tmp/kegiatan/'.$foto->file_name) }}" class="img-fluid mx-auto d-block" alt="img3">
                             <div class="text-center">
                                 <p>{{$foto->kegiatan}}</p>
                             </div>
                         </div>
                         @endforeach
+                        @else
+                        <div class="text-center col-12">
+                            <p>Belum ada foto kegiatan yang ditambahkan</p>
+                        </div>
+                        @endif
                     </div>
                     <a class="tombol carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

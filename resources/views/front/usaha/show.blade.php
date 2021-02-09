@@ -68,6 +68,7 @@
                     <!-- Media Sosial -->
                     <div class="row">
                         <p>Media Sosial : <br>
+                            @if($usaha->usahaMediaSosials->count() > 0)
                             @foreach($usaha->usahaMediaSosials as $mediaSosial)
                             @if ($mediaSosial->vendor == "website")
                             <i class="fa fa-link" aria-hidden="true"></i><a href="{{$mediaSosial->link_accname}}" target="_blank" title="Website"> {{$mediaSosial->link_accname}}</a><br>
@@ -79,6 +80,9 @@
                             <i class="fa fa-music" aria-hidden="true"></i><a href="https://www.tiktok.com/{{$mediaSosial->link_accname}}" target="_blank" title="TikTok"> {{$mediaSosial->link_accname}}</a><br>
                             @endif
                             @endforeach
+                            @else
+                            Belum ada media sosial yang ditambahkan
+                            @endif
                         </p>
                     </div>
                 </div>
