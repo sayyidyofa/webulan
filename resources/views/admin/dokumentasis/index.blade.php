@@ -37,7 +37,7 @@
                     @foreach($dokumentasis as $key => $dokumentasi)
                     <tr data-entry-id="{{ $dokumentasi->id }}">
                         <td>
-                            {{ $dokumentasi->id ?? '' }}
+                            {{ $loop->iteration }}
                         </td>
                         <td>
                             {{ $dokumentasi->kegiatan ?? '' }}
