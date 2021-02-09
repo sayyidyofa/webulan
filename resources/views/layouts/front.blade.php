@@ -58,7 +58,7 @@ Header
   <header id="header" class="fixed-top" style="padding: 3px; height:fit-content; background-color: #5069c3">
     <div class="container">
       <nav class="main-nav float-left">
-        <a href="{{ route('front.usahaList') }}"><img src="{{ asset('front/img/logobaru.png') }}" alt="" class="img-fluid" width="150"></a>
+        <a href="{{ route('front.usahaList') }}"><img src="{{ asset('front/img/KELURAHAN BULUSAN.png') }}" alt="" class="img-fluid" width="150"></a>
       </nav><!-- .main-nav -->
     </div>
   </header><!-- #header -->
