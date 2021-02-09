@@ -13,7 +13,8 @@ Route::get('/home', function () {
     return redirect()->route('admin.home');
 });
 
-Auth::routes(['register' => false]);
+// Auth
+Route::auth(['register' => false, 'reset' => false, 'verify' => false]); // No user registration allowed except by Admin or Sadmin
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
