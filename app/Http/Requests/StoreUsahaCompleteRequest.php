@@ -65,7 +65,9 @@ class StoreUsahaCompleteRequest extends FormRequest
 
     public function withValidator(Validator $validator) {
         if ($validator->fails()) {
-            collect($this->all())->filter(fn ($v, $k) => strpos($k, 'foto_') !== false)->each(function (array $item) {
+            collect($this->all())->filter(function ($v, $k) {
+                return strpos($k, 'foto_') !== false;
+            })->each(function (array $item) {
                 foreach ($item as $filename) {
                     Storage::disk('temporary')->delete($filename);
                 }
