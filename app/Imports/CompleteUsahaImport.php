@@ -17,7 +17,7 @@ class CompleteUsahaImport implements ToCollection, WithStartRow
 {
     use Importable;
 
-    private int $pengusahaId;
+    private $pengusahaId;
 
     /**
      * @return int
@@ -50,35 +50,10 @@ class CompleteUsahaImport implements ToCollection, WithStartRow
     {
         $this->usahaId = $usahaId;
     }
-    private int $usahaId;
+    private $usahaId;
 
     public function collection(Collection $collection)
     {
-        //dd($collection);
-        $structure = [
-            'pengusaha' => [
-                'nama' => null
-            ],
-            'usaha' => [
-                'nib' => null,
-                'brand' => null,
-                'deskripsi' => null,
-                'kategori' => null,
-                'kontak' => null,
-                'alamat' => null,
-                'maps' => null,
-                'kegiatan' => null,
-                'produk' => [
-                    'nama' => null,
-                    'deskripsi' => null
-                ],
-                'sosmed' => [
-                    'link_nama_acc' => null,
-                    'vendor' => null
-                ]
-            ]
-        ];
-
         $collection->eachSpread(function (
             $pengusahaNama,
             $usahaNib,
@@ -123,7 +98,9 @@ class CompleteUsahaImport implements ToCollection, WithStartRow
             }
             if (!is_null($usahaProdukNama)) {
                 // Apakah usaha sudah punya produk dengan nama yg sama? Kalau tidak lanjutkan insert
-                if (Usaha::find($this->getUsahaId())->usahaProdukUnggulans->filter(fn (ProdukUnggulan $produk) => strtolower($produk->nama) === strtolower($usahaProdukNama))->count() < 1) {
+                if (Usaha::find($this->getUsahaId())->usahaProdukUnggulans->filter(function (ProdukUnggulan $produk) use ($usahaProdukNama) {
+                        return strtolower($produk->nama) === strtolower($usahaProdukNama);
+                    })->count() < 1) {
                     ProdukUnggulan::create([
                         'nama' => $usahaProdukNama,
                         'deskripsi' => $usahaProdukDeskripsi,
@@ -132,7 +109,9 @@ class CompleteUsahaImport implements ToCollection, WithStartRow
                 }
             }
             if (!is_null($usahaSosmedLinkNamaAcc)) {
-                if (Usaha::find($this->getUsahaId())->usahaMediaSosials->filter(fn (MediaSosial $mediaSosial) => strtolower($mediaSosial->link_accname) === strtolower($usahaSosmedLinkNamaAcc))->count() < 1) {
+                if (Usaha::find($this->getUsahaId())->usahaMediaSosials->filter(function (MediaSosial $mediaSosial) use ($usahaSosmedLinkNamaAcc) {
+                        return strtolower($mediaSosial->link_accname) === strtolower($usahaSosmedLinkNamaAcc);
+                    })->count() < 1) {
                     MediaSosial::create([
                         'link_accname' => $usahaSosmedLinkNamaAcc,
                         'vendor' => in_array($usahaSosmedVendor, ['facebook', 'instagram', 'tiktok'])
