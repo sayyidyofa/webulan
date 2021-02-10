@@ -13,7 +13,7 @@ jobs:
         php-version: '7.3'
     - uses: actions/checkout@v2
     - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --optimize-autoloader --no-dev
+      run: composer update && composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --optimize-autoloader --no-dev
     - name: Write .env file
       run: |
         echo -e 'APP_NAME="Webulan"' > .env
